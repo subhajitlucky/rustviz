@@ -1,0 +1,171 @@
+{
+  "projectName": "Rust Internals & Problem-Solving Visualizer",
+  "description": "A single-topic, mastery-level educational microsite dedicated to Rust, designed to build deep mental models instead of surface-level knowledge. The site teaches Rust by visualizing memory, ownership, borrowing, lifetimes, and compiler reasoning, and then directly applies those mental models to problem-solving scenarios inspired by LeetCode-style questions. This site intentionally covers what RareCode AI explains visually and what LeetCode tests implicitly — in one cohesive experience.",
+  "subject": "Rust Programming Language",
+  "status": "full-mastery-resource",
+
+  "absolutePhilosophy": {
+    "learningSequence": [
+      "mental model",
+      "rule explanation",
+      "real-world intuition",
+      "code example",
+      "visual simulation",
+      "problem application"
+    ],
+    "coreBelief": "If a learner can visualize Rust’s rules, they can write Rust confidently anywhere."
+  },
+
+  "whatThisSiteIsNOT": [
+    "Not a Rust Book rewrite",
+    "Not syntax-first",
+    "Not backend-focused",
+    "Not framework-oriented",
+    "Not interview-question dumping"
+  ],
+
+  "whatThisSiteIS": [
+    "A Rust mental model simulator",
+    "A compiler-behavior explainer",
+    "A bridge between theory and problem-solving",
+    "A visual explanation of why Rust feels hard at first"
+  ],
+
+  "creativeFreedom": {
+    "design": "UNRESTRICTED",
+    "instruction": [
+      "Use any layout, animation, or interaction style",
+      "Premium, smooth UI is mandatory",
+      "shadcn-style components encouraged but not required",
+      "Visual clarity beats visual decoration",
+      "Animations must explain rules, not impress"
+    ]
+  },
+
+  "constraints": {
+    "frontendOnly": true,
+    "noBackend": true,
+    "noAuthentication": true,
+    "noRealCodeExecution": true,
+    "noExternalAPIs": true,
+    "statePersistence": "localStorage only"
+  },
+
+  "learningArchitecture": {
+    "coreLayers": [
+      "How Rust sees memory",
+      "How Rust enforces rules",
+      "How the compiler reasons",
+      "How problems change because of these rules"
+    ]
+  },
+
+  "learningPath": {
+    "description": "A strict mental-model-first path. Learners must understand the model before seeing solutions.",
+    "steps": [
+      {
+        "step": 1,
+        "title": "Why Rust Exists (Problems It Solves)",
+        "goal": "Understand memory bugs, data races, and why Rust chose strict rules"
+      },
+      {
+        "step": 2,
+        "title": "Rust Memory Model (Stack, Heap, Ownership)",
+        "goal": "Visualize where data lives and who owns it"
+      },
+      {
+        "step": 3,
+        "title": "Ownership Rules (The Core Law)",
+        "goal": "Understand moves, drops, and why values disappear"
+      },
+      {
+        "step": 4,
+        "title": "Borrowing & References (Temporary Access)",
+        "goal": "Understand aliasing, mutability, and borrow checker logic"
+      },
+      {
+        "step": 5,
+        "title": "Lifetimes (Why References Must Die)",
+        "goal": "Visualize scope-based validity, not syntax annotations"
+      },
+      {
+        "step": 6,
+        "title": "Structs, Enums & Pattern Matching (Data Shapes)",
+        "goal": "Understand how Rust models data safely"
+      },
+      {
+        "step": 7,
+        "title": "Error Handling (Result & Option as Design)",
+        "goal": "See error handling as control flow, not boilerplate"
+      },
+      {
+        "step": 8,
+        "title": "Concurrency & Safety Guarantees",
+        "goal": "Visualize how Rust prevents data races at compile time"
+      },
+      {
+        "step": 9,
+        "title": "How the Rust Compiler Thinks",
+        "goal": "Interpret compiler errors as rule violations"
+      },
+      {
+        "step": 10,
+        "title": "Rust Problem Solving (LeetCode Mental Mapping)",
+        "goal": "Apply Rust mental models to algorithmic problems"
+      }
+    ]
+  },
+
+  "topicRules": {
+    "everyTopicMustInclude": [
+      "mental model explanation",
+      "plain-English rule description",
+      "small Rust code example",
+      "step-by-step visual simulation",
+      "common beginner mistake visualization",
+      "problem-solving implication"
+    ]
+  },
+
+  "problemSolvingSection": {
+    "purpose": "Expose what LeetCode problems assume but never explain",
+    "method": [
+      "Explain the problem without code",
+      "Overlay Rust ownership & borrowing rules",
+      "Show why naive solutions fail in Rust",
+      "Visualize the correct Rust-safe approach",
+      "Only then show code"
+    ],
+    "exampleProblems": [
+      "Two Sum with ownership constraints",
+      "Reverse string without invalid references",
+      "Linked list memory visualization",
+      "Concurrency-safe counter",
+      "Tree traversal with lifetimes intuition"
+    ]
+  },
+
+  "visualizationRequirements": {
+    "mandatory": true,
+    "types": [
+      "memory graphs",
+      "ownership transfer animations",
+      "borrow checker timelines",
+      "lifetime scope overlays",
+      "compiler error cause mapping"
+    ],
+    "performance": "Prefer SVG or Canvas. Avoid heavy assets."
+  },
+
+  "contentTone": {
+    "style": "clear, calm, confidence-building",
+    "assumption": "The learner is intelligent but confused",
+    "avoid": [
+      "hand-wavy explanations",
+      "fear-based Rust myths",
+      "syntax-first teaching"
+    ]
+  },
+
+  "finalInstruction": "Build the definitive Rust mental-model learning resource. Cover everything RareCode AI explains visually and everything LeetCode expects implicitly — but explain it explicitly. This site should make Rust feel logical, not magical."
+}
