@@ -51,7 +51,7 @@ const LifetimesDeepVis = lazy(() => import("@/modules/phase-3-ownership/Lifetime
 // Phase 3 Modules (Named Exports)
 const SmartPointersVis = lazy(() => import("@/modules/phase-3-advanced/SmartPointersVis").then(m => ({ default: m.SmartPointersVis })))
 const InteriorMutabilityVis = lazy(() => import("@/modules/phase-3-advanced/InteriorMutabilityVis").then(m => ({ default: m.InteriorMutabilityVis })))
-const ExplicitLifetimesVis = lazy(() => import("@/modules/phase-3-advanced/ExplicitLifetimesVis").then(m => ({ default: m.ExplicitLifetimesVis })))
+const ExplicitLifetimesVis = lazy(() => import("@/modules/phase-7-chronos/ExplicitLifetimesVis").then(m => ({ default: m.ExplicitLifetimesVis })))
 const TestingVis = lazy(() => import("@/modules/phase-3-advanced/TestingVis").then(m => ({ default: m.TestingVis })))
 const CargoVis = lazy(() => import("@/modules/phase-3-advanced/CargoVis").then(m => ({ default: m.CargoVis })))
 
@@ -59,7 +59,7 @@ const CargoVis = lazy(() => import("@/modules/phase-3-advanced/CargoVis").then(m
 const AsyncVis = lazy(() => import("@/modules/phase-4-systems/AsyncVis").then(m => ({ default: m.AsyncVis })))
 const UnsafeVis = lazy(() => import("@/modules/phase-4-systems/UnsafeVis").then(m => ({ default: m.UnsafeVis })))
 const MemoryLayoutVis = lazy(() => import("@/modules/phase-4-systems/MemoryLayoutVis").then(m => ({ default: m.MemoryLayoutVis })))
-const AdvancedTraitsVis = lazy(() => import("@/modules/phase-4-systems/AdvancedTraitsVis").then(m => ({ default: m.AdvancedTraitsVis })))
+const AdvancedTraitsVis = lazy(() => import("@/modules/phase-7-chronos/AdvancedTraitsVis").then(m => ({ default: m.AdvancedTraitsVis })))
 const MacrosVis = lazy(() => import("@/modules/phase-4-systems/MacrosVis").then(m => ({ default: m.MacrosVis })))
 
 // Phase 4 Data Modules
