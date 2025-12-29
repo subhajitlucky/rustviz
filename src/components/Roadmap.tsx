@@ -3,11 +3,13 @@ import { CheckCircle2, ArrowRight } from "lucide-react"
 import { useAppStore } from "@/store/useAppStore"
 import { cn } from "@/lib/utils"
 import { learningPath } from "@/lib/learning-path"
+import { useNavigate } from "react-router-dom"
 
 const allTopics = learningPath.flatMap(p => p.topics)
 
 export function Roadmap() {
-    const { currentStep, setCurrentStep } = useAppStore()
+    const { currentStep } = useAppStore()
+    const navigate = useNavigate()
 
     return (
         <div className="py-12 px-4 max-w-4xl mx-auto space-y-16">
@@ -38,7 +40,7 @@ export function Roadmap() {
                                             ? "border-primary bg-primary/5 shadow-md shadow-primary/10 ring-1 ring-primary/20" 
                                             : "hover:border-primary/50 bg-card"
                                     )}
-                                    onClick={() => setCurrentStep(globalIndex)}
+                                    onClick={() => navigate(`/learn/${globalIndex}`)}
                                 >
                                     {isActive && <div className={cn("absolute top-0 left-0 w-1 h-full", phase.color)} />}
                                     

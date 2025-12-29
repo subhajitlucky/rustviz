@@ -1,12 +1,12 @@
 import { motion } from "framer-motion"
 import { Trophy, Star, Heart, Github, Twitter } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useAppStore } from "@/store/useAppStore"
 import Confetti from "react-confetti"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 export default function Congrats() {
-    const { setView } = useAppStore()
+    const navigate = useNavigate()
     const [windowSize, setWindowSize] = useState({ 
         width: typeof window !== 'undefined' ? window.innerWidth : 0, 
         height: typeof window !== 'undefined' ? window.innerHeight : 0 
@@ -90,7 +90,7 @@ export default function Congrats() {
                 transition={{ delay: 0.8 }}
                 className="flex gap-4 pt-12"
             >
-                <Button size="lg" className="rounded-full px-8 h-14 text-lg" onClick={() => setView('home')}>
+                <Button size="lg" className="rounded-full px-8 h-14 text-lg" onClick={() => navigate('/')}>
                     Return to Home
                 </Button>
                 <Button variant="outline" size="lg" className="rounded-full px-8 h-14 text-lg gap-2">

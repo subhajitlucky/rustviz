@@ -2,11 +2,9 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 interface AppState {
-    view: 'home' | 'roadmap' | 'module' | 'playground'
     currentStep: number
     completedModules: string[]
     theme: 'light' | 'dark'
-    setView: (view: 'home' | 'roadmap' | 'module' | 'playground') => void
     setCurrentStep: (step: number) => void
     completeModule: (id: string) => void
     toggleTheme: () => void
@@ -15,12 +13,10 @@ interface AppState {
 export const useAppStore = create<AppState>()(
     persist(
         (set) => ({
-            view: 'home',
             currentStep: 1,
             completedModules: [],
             theme: 'dark',
-            setView: (view) => set({ view }),
-            setCurrentStep: (step) => set({ currentStep: step, view: 'module' }),
+            setCurrentStep: (step) => set({ currentStep: step }),
             completeModule: (id) =>
                 set((state) => ({
                     completedModules: state.completedModules.includes(id)
