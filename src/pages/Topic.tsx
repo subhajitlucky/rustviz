@@ -48,6 +48,7 @@ const DestructuringVis = lazy(() => import("@/modules/phase-2-abstraction/Destru
 // Phase 8 Functional Modules
 const ClosuresVis = lazy(() => import("@/modules/phase-8-functional/ClosuresVis"))
 const IteratorsVis = lazy(() => import("@/modules/phase-8-functional/IteratorsVis"))
+const IteratorsVsLoopsVis = lazy(() => import("@/modules/phase-8-functional/IteratorsVsLoopsVis"))
 
 // Phase 3 Modules
 const OwnershipVis = lazy(() => import("@/modules/phase-3-ownership/OwnershipVis"))
@@ -76,6 +77,7 @@ const PanicVis = lazy(() => import("@/modules/phase-5-safety/PanicVis"))
 const SugarVis = lazy(() => import("@/modules/phase-5-safety/SugarVis"))
 const ErrorPatternsVis = lazy(() => import("@/modules/phase-5-safety/ErrorPatternsVis"))
 const CollectionsVis = lazy(() => import("@/modules/phase-5-safety/CollectionsVis"))
+const StringVis = lazy(() => import("@/modules/phase-5-safety/StringVis"))
 
 // Graduation Modules
 const CompilerLogic = lazy(() => import("@/modules/phase-10-graduation/CompilerLogic"))
@@ -113,6 +115,7 @@ const COMPONENT_MAP: Record<string, React.ComponentType> = {
   "generics": GenericsVis,
   "traits": TraitsVis,
   "iterators": IteratorsVis,
+  "iter-vs-loop": IteratorsVsLoopsVis,
   "closures": ClosuresVis,
   "smart-pointers": SmartPointersVis,
   "interior-mutability": InteriorMutabilityVis,
@@ -130,6 +133,7 @@ const COMPONENT_MAP: Record<string, React.ComponentType> = {
   "sugar": SugarVis,
   "error-patterns": ErrorPatternsVis,
   "collections": CollectionsVis,
+  "string-vis": StringVis,
   "trait-bounds": TraitBoundsVis,
   "derive": DeriveVis,
   "compiler-logic": CompilerLogic,

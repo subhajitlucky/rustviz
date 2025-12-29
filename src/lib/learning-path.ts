@@ -644,6 +644,7 @@ export const learningPath: Phase[] = [
         id: "50", 
         title: "String Manipulation", 
         description: "Push, Pop, and Concatenate.",
+        componentId: "string-vis",
         details: {
           definition: "The 'String' type is a growable, UTF-8 encoded sequence of bytes. You can modify it dynamically as your program runs.",
           syntax: "s.push_str(\" world\");",
@@ -1025,6 +1026,7 @@ export const learningPath: Phase[] = [
         id: "80", 
         title: "Iters vs Loops", 
         description: "When to use which.",
+        componentId: "iter-vs-loop",
         details: {
           definition: "While loops are good for simple repetition, iterators are preferred for processing sequences of data due to safety and expressiveness.",
           syntax: "// Loop vs Iterator",
