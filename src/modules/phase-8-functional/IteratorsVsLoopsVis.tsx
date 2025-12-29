@@ -1,5 +1,4 @@
 import { CodeWalkthrough, Step } from "@/components/visualizer/CodeWalkthrough"
-import { motion } from "framer-motion"
 
 export default function IteratorsVsLoopsVis() {
     const steps: Step[] = [

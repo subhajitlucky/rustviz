@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button"
 import { Terminal, Play, RefreshCw, ArrowDown, CheckCircle2, Box as BoxIcon } from "lucide-react"
 import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
+import { cn } from "@/lib/utils"
 
 // Define the available concepts for visualization
 type Concept = "ownership" | "borrowing" | "lifetimes" | "structs" | "concurrency" | "smart_pointers" | "error_handling" | "iterators";
@@ -295,12 +296,14 @@ function VisualizationCanvas({ concept, step }: { concept: Concept, step: number
                     <div className="text-xs text-center font-bold text-muted-foreground mb-2">HEAP</div>
                     
                     <motion.div 
-                        className="p-4 border-2 border-primary rounded-lg bg-primary/10"
                         initial={{ scale: 0.8, opacity: 0 }}
+                        className={cn(
+                            "p-4 border-2 rounded-lg bg-primary/10 transition-colors duration-300",
+                            step >= 1 ? "border-primary" : "border-primary"
+                        )}
                         animate={{ 
                             scale: 1, 
                             opacity: 1,
-                            borderColor: step >= 1 ? "var(--primary)" : "var(--primary)",
                             x: step >= 1 ? 0 : 0
                         }}
                     >
@@ -354,10 +357,12 @@ function VisualizationCanvas({ concept, step }: { concept: Concept, step: number
                         {[1, 2, 3].map((val, idx) => (
                             <motion.div
                                 key={idx}
-                                className="w-12 h-12 border-2 border-slate-300 dark:border-slate-700 rounded flex items-center justify-center font-bold bg-white dark:bg-slate-800"
+                                className={cn(
+                                    "w-12 h-12 border-2 rounded flex items-center justify-center font-bold bg-white dark:bg-slate-800 transition-colors duration-300",
+                                    step >= 1 ? "border-primary" : "border-slate-300 dark:border-slate-700"
+                                )}
                                 animate={{ 
                                     scale: step === 1 ? 1.1 : 1,
-                                    borderColor: step >= 1 ? "var(--primary)" : undefined
                                 }}
                             >
                                 {val}
@@ -385,13 +390,15 @@ function VisualizationCanvas({ concept, step }: { concept: Concept, step: number
                         {[2, 3, 4].map((val, idx) => (
                             <motion.div
                                 key={idx}
-                                className="w-12 h-12 border-2 border-dashed border-slate-300 dark:border-slate-700 rounded flex items-center justify-center font-bold bg-slate-50 dark:bg-slate-900"
+                                className={cn(
+                                    "w-12 h-12 border-2 rounded flex items-center justify-center font-bold bg-slate-50 dark:bg-slate-900 transition-all duration-300",
+                                    step >= 2 ? "border-primary" : "border-slate-300 dark:border-slate-700",
+                                    step >= 3 ? "border-solid" : "border-dashed"
+                                )}
                                 initial={{ opacity: 0.3, scale: 0.8 }}
                                 animate={{ 
                                     opacity: step >= 2 ? 1 : 0.3,
                                     scale: step >= 2 ? 1 : 0.8,
-                                    borderColor: step >= 2 ? "var(--primary)" : undefined,
-                                    borderStyle: step >= 3 ? "solid" : "dashed"
                                 }}
                             >
                                 {step >= 2 ? val : "?"}
@@ -465,8 +472,10 @@ function VisualizationCanvas({ concept, step }: { concept: Concept, step: number
                  <div className="flex flex-col items-center gap-2">
                     <div className="text-xs font-bold text-muted-foreground">STACK</div>
                     <motion.div 
-                        className="p-3 border-2 border-slate-300 dark:border-slate-700 rounded bg-white dark:bg-slate-800 shadow-sm w-24"
-                        animate={{ borderColor: step >= 1 ? "var(--primary)" : undefined }}
+                        className={cn(
+                            "p-3 border-2 rounded bg-white dark:bg-slate-800 shadow-sm w-24 transition-colors duration-300",
+                            step >= 1 ? "border-primary" : "border-slate-300 dark:border-slate-700"
+                        )}
                     >
                         <div className="text-xs font-mono text-muted-foreground">b</div>
                         <div className="text-sm font-bold">ptr</div>

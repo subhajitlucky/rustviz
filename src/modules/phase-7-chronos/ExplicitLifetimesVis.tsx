@@ -2,7 +2,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
-import { Timer, ArrowRight, Info, Box, EyeOff, Infinity } from "lucide-react"
+import { Timer, ArrowRight, Info, Box, EyeOff, Infinity as InfinityIcon } from "lucide-react"
 
 export function ExplicitLifetimesVis() {
     const [activeTab, setActiveTab] = useState<'basics' | 'structs' | 'elision' | 'static'>('basics')
@@ -243,7 +243,7 @@ export function ExplicitLifetimesVis() {
                             className="space-y-6"
                         >
                             <div className="flex items-center gap-4">
-                                <Infinity className="w-8 h-8 text-pink-500" />
+                                <InfinityIcon className="w-8 h-8 text-pink-500" />
                                 <h3 className="text-lg font-bold">'static Lifetime</h3>
                             </div>
                             

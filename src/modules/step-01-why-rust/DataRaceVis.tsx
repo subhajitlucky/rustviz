@@ -47,7 +47,7 @@ export function DataRaceVis() {
                         className="w-32 h-32 bg-primary rounded-xl flex items-center justify-center text-4xl font-mono font-bold text-primary-foreground shadow-xl border-4 border-transparent"
                         animate={{
                             scale: status === "crashed" ? [1, 1.1, 0.9, 1] : 1,
-                            borderColor: status === "crashed" ? "rgb(239 68 68)" : "transparent",
+                            borderColor: status === "crashed" ? "rgb(239 68 68)" : "rgba(0, 0, 0, 0)",
                             backgroundColor: status === "crashed" ? "rgb(75 85 99)" : "rgb(30, 41, 59)" // gray-600 vs primary (adjust based on theme)
                         }}
                         transition={{ duration: 0.5 }}
