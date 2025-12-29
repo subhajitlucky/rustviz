@@ -294,7 +294,7 @@ export const learningPath: Phase[] = [
         id: "22", 
         title: "Ownership Laws", 
         description: "The three core rules.", 
-        componentId: "ownership",
+        componentId: "ownership-vis",
         details: {
           definition: "Ownership is Rust's most unique feature. It ensures memory safety without a garbage collector through three strict rules.",
           syntax: "{\n    let s = String::from(\"hello\");\n} // s is dropped here",
@@ -306,7 +306,7 @@ export const learningPath: Phase[] = [
         id: "23", 
         title: "Move Semantics", 
         description: "Transferring resource control.", 
-        componentId: "ownership",
+        componentId: "ownership-vis",
         details: {
           definition: "When you assign a heap-allocated variable to another, Rust performs a 'move' rather than a shallow copy, invalidating the first variable to prevent double-free errors.",
           syntax: "let x = String::from(\"hi\");\nlet y = x; // x moved to y",
@@ -318,7 +318,7 @@ export const learningPath: Phase[] = [
         id: "24", 
         title: "Clone vs Copy", 
         description: "Deep vs bitwise duplication.", 
-        componentId: "ownership",
+        componentId: "ownership-vis",
         details: {
           definition: "Types stored on the stack implement the 'Copy' trait for cheap duplication. Heap types require 'Clone' for an explicit, more expensive deep copy.",
           syntax: "let x = 5; let y = x; // Copy\nlet s1 = String::from(\"hi\"); let s2 = s1.clone(); // Clone",
@@ -330,7 +330,7 @@ export const learningPath: Phase[] = [
         id: "25", 
         title: "Reference Borrowing", 
         description: "Access without ownership.", 
-        componentId: "borrowing",
+        componentId: "borrowing-vis",
         details: {
           definition: "Borrowing allows you to create references to a value without taking ownership of it. This lets you use data in multiple places without copying it.",
           syntax: "let s = String::from(\"hi\");\nlet len = calculate_length(&s);",
@@ -342,7 +342,7 @@ export const learningPath: Phase[] = [
         id: "26", 
         title: "Mutable Borrows", 
         description: "Changing borrowed data.", 
-        componentId: "borrowing",
+        componentId: "borrowing-vis",
         details: {
           definition: "A mutable reference (&mut) allows you to modify borrowed data. However, Rust restricts you to exactly one mutable reference to prevent data races.",
           syntax: "let mut s = String::from(\"hi\");\nchange(&mut s);",
@@ -354,7 +354,7 @@ export const learningPath: Phase[] = [
         id: "27", 
         title: "Aliasing Rules", 
         description: "The one-mut-or-many-immut rule.", 
-        componentId: "borrowing",
+        componentId: "borrowing-vis",
         details: {
           definition: "Rust's borrow checker enforces a strict aliasing rule: you can have either many immutable references OR exactly one mutable reference, never both.",
           syntax: "let r1 = &s; let r2 = &s; // OK\n// let r3 = &mut s; // ERROR",
@@ -366,7 +366,7 @@ export const learningPath: Phase[] = [
         id: "28", 
         title: "NLL: Non-Lexical Lifetimes", 
         description: "Smart compiler analysis.",
-        componentId: "lifetimes",
+        componentId: "lifetimes-vis",
         details: {
           definition: "NLL is a compiler feature that makes the borrow checker smarter by tracking the actual usage of references rather than just their block scope.",
           syntax: "let mut s = String::from(\"hi\");\nlet r1 = &s;\nprintln!(\"{}\", r1);\nlet r2 = &mut s; // OK because r1 is no longer used",
@@ -378,7 +378,7 @@ export const learningPath: Phase[] = [
         id: "29", 
         title: "Dangling Pointers", 
         description: "How Rust prevents them.",
-        componentId: "lifetimes",
+        componentId: "lifetimes-vis",
         details: {
           definition: "A dangling pointer is a pointer that references a location in memory that may have been given to someone else. Rust prevents this through its lifetime system.",
           syntax: "fn dangle() -> &String {\n    let s = String::from(\"hi\");\n    &s // Error: s is dropped!\n}",
@@ -390,7 +390,7 @@ export const learningPath: Phase[] = [
         id: "30", 
         title: "Memory Safety Summary", 
         description: "The visual mental model.",
-        componentId: "ownership",
+        componentId: "ownership-vis",
         details: {
           definition: "By combining ownership, borrowing, and lifetimes, Rust achieves complete memory safety without the overhead of a garbage collector.",
           syntax: "// No special syntax - it's the sum of all parts",

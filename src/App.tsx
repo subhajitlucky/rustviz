@@ -43,7 +43,10 @@ const ErrorPatternsVis = lazy(() => import("@/modules/phase-2-abstraction/ErrorP
 const MatchVis = lazy(() => import("@/modules/phase-2-abstraction/MatchVis"))
 const LoopsVis = lazy(() => import("@/modules/phase-2-abstraction/LoopsVis"))
 const DestructuringVis = lazy(() => import("@/modules/phase-2-abstraction/DestructuringVis"))
-
+// Phase 3 Modules
+const OwnershipVis = lazy(() => import("@/modules/phase-3-ownership/OwnershipVis"))
+const BorrowingVis = lazy(() => import("@/modules/phase-3-ownership/BorrowingVis"))
+const LifetimesDeepVis = lazy(() => import("@/modules/phase-3-ownership/LifetimesDeepVis"))
 // Phase 3 Modules (Named Exports)
 const SmartPointersVis = lazy(() => import("@/modules/phase-3-advanced/SmartPointersVis").then(m => ({ default: m.SmartPointersVis })))
 const InteriorMutabilityVis = lazy(() => import("@/modules/phase-3-advanced/InteriorMutabilityVis").then(m => ({ default: m.InteriorMutabilityVis })))
@@ -87,6 +90,9 @@ const COMPONENT_MAP: Record<string, React.ComponentType> = {
   "match": MatchVis,
   "loops": LoopsVis,
   "destructuring": DestructuringVis,
+  "ownership-vis": OwnershipVis,
+  "borrowing-vis": BorrowingVis,
+  "lifetimes-vis": LifetimesDeepVis,
   "slices": SlicesVis,
   "option-result": OptionResultVis,
   "println-macro": PrintMacros,
