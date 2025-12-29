@@ -27,16 +27,16 @@ export function TopicContent({ topic, visualizer }: TopicContentProps) {
                 >
                     <BookOpen size={24} />
                 </motion.div>
-                <h1 className="text-4xl font-extrabold tracking-tight lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-500">
+                <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight lg:text-6xl bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-500">
                     {topic.title}
                 </h1>
-                <p className="text-xl text-muted-foreground leading-relaxed">
+                <p className="text-lg md:text-xl text-muted-foreground leading-relaxed">
                     {topic.description}
                 </p>
             </div>
 
             {/* Core Content Grid */}
-            <div className="grid gap-8 lg:grid-cols-2">
+            <div className="grid gap-6 md:gap-8 lg:grid-cols-2">
                 {/* Definition & Concept */}
                 <Card className="border-2 shadow-sm hover:shadow-md transition-shadow">
                     <CardHeader className="bg-muted/30">

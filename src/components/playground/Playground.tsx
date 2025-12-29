@@ -235,7 +235,7 @@ export function Playground() {
                         </Badge>
                     </div>
                     
-                    <div className="flex-1 p-8 flex items-center justify-center">
+                    <div className="flex-1 p-4 md:p-8 flex items-center justify-center overflow-x-auto">
                         <AnimatePresence mode="wait">
                             {!isPlaying ? (
                                 <motion.div 

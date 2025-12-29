@@ -194,22 +194,24 @@ export default function Topic() {
              />
           </div>
 
-          <div className="flex justify-between border-t border-border/50 pt-8 pb-12">
-            <Button variant="ghost" onClick={prev} className="flex gap-2">
+          <div className="flex flex-col md:flex-row items-center justify-between border-t border-border/50 pt-8 pb-12 gap-6 md:gap-0">
+            <Button variant="ghost" onClick={prev} className="flex gap-2 order-2 md:order-1 w-full md:w-auto">
               ← {currentIndex === 0 ? 'Home' : 'Previous'}
             </Button>
             
-            <Button variant="outline" onClick={() => navigate('/learn')} className="flex gap-2 rounded-full">
-              <List className="h-4 w-4" /> Back to Roadmap
-            </Button>
-
-            <div className="flex flex-col items-center gap-1">
-              <div className="text-muted-foreground text-xs font-mono uppercase tracking-widest">
-                {currentTopic.title}
-              </div>
-              <div className="text-sm font-bold opacity-50">{currentIndex + 1}/{allTopicsWithPhase.length}</div>
+            <div className="flex flex-col items-center gap-3 order-1 md:order-2">
+                <div className="flex flex-col items-center gap-1">
+                    <div className="text-muted-foreground text-xs font-mono uppercase tracking-widest text-center">
+                        {currentTopic.title}
+                    </div>
+                    <div className="text-sm font-bold opacity-50">{currentIndex + 1}/{allTopicsWithPhase.length}</div>
+                </div>
+                <Button variant="outline" size="sm" onClick={() => navigate('/learn')} className="flex gap-2 rounded-full h-8 text-xs">
+                    <List className="h-3 w-3" /> Roadmap
+                </Button>
             </div>
-            <Button onClick={next} className="flex gap-2 min-w-[120px]">
+
+            <Button onClick={next} className="flex gap-2 min-w-[120px] order-3 w-full md:w-auto">
               {currentIndex === allTopicsWithPhase.length - 1 ? 'Course Complete!' : 'Next'} →
             </Button>
           </div>

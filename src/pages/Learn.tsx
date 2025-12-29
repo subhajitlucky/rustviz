@@ -13,10 +13,10 @@ export default function Learn() {
   }
 
   return (
-    <div className="animate-in fade-in slide-in-from-bottom-8 duration-500">
+    <div className="animate-in fade-in slide-in-from-bottom-8 duration-500 px-4">
       <Roadmap />
-      <div className="flex justify-center mt-12 mb-20">
-        <Button size="lg" className="rounded-full px-8" onClick={startJourney}>
+      <div className="flex justify-center mt-8 md:mt-12 mb-20">
+        <Button size="lg" className="rounded-full px-8 w-full md:w-auto" onClick={startJourney}>
           Start Learning Journey
         </Button>
       </div>

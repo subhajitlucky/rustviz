@@ -12,8 +12,8 @@ export function Roadmap() {
     const navigate = useNavigate()
 
     return (
-        <div className="py-12 px-4 max-w-4xl mx-auto space-y-16">
-            <h2 className="text-4xl font-extrabold mb-8 text-center tracking-tight">Learning Path</h2>
+        <div className="py-8 md:py-12 px-4 max-w-4xl mx-auto space-y-12 md:space-y-16">
+            <h2 className="text-3xl md:text-4xl font-extrabold mb-8 text-center tracking-tight">Learning Path</h2>
             
             {learningPath.map((phase) => (
                 <div key={phase.id} className="relative">

@@ -5,19 +5,19 @@ import { Layers, BookOpen, Terminal } from "lucide-react"
 export default function Home() {
   const navigate = useNavigate()
   return (
-    <div className="space-y-24 py-12">
-      <div className="flex flex-col items-center justify-center min-h-[40vh] space-y-6 text-center animate-in fade-in zoom-in duration-700">
-        <h1 className="text-5xl font-extrabold tracking-tight lg:text-7xl max-w-4xl leading-tight">
+    <div className="space-y-12 md:space-y-24 py-8 md:py-12">
+      <div className="flex flex-col items-center justify-center min-h-[40vh] space-y-6 text-center animate-in fade-in zoom-in duration-700 px-4">
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight lg:text-7xl max-w-4xl leading-tight">
           Master Rust Internals Through <span className="text-primary italic drop-shadow-sm">Visual Discovery</span>
         </h1>
         <p className="text-xl text-muted-foreground max-w-[700px] leading-relaxed">
           Stop fighting the compiler and start understanding how it thinks. We visualize memory, ownership, and concurrency so you can build with confidence.
         </p>
-        <div className="flex gap-4 pt-6">
-          <Button size="lg" className="h-14 px-10 text-lg rounded-full shadow-lg shadow-primary/20" onClick={() => navigate('/learn')}>
+        <div className="flex flex-col sm:flex-row gap-4 pt-6 w-full sm:w-auto px-4 sm:px-0">
+          <Button size="lg" className="h-12 sm:h-14 px-8 sm:px-10 text-base sm:text-lg rounded-full shadow-lg shadow-primary/20 w-full sm:w-auto" onClick={() => navigate('/learn')}>
             View Learning Path
           </Button>
-          <Button variant="outline" size="lg" className="h-14 px-10 text-lg rounded-full" onClick={() => navigate('/playground')}>
+          <Button variant="outline" size="lg" className="h-12 sm:h-14 px-8 sm:px-10 text-base sm:text-lg rounded-full w-full sm:w-auto" onClick={() => navigate('/playground')}>
             Rust Playground ↗
           </Button>
         </div>

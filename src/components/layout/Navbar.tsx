@@ -1,8 +1,10 @@
-import { Terminal, BookOpen, Layers, Sun, Moon } from "lucide-react"
+import { Terminal, BookOpen, Layers, Sun, Moon, Menu, X } from "lucide-react"
 import { useAppStore } from "@/store/useAppStore"
 import { cn } from "@/lib/utils"
 import { learningPath } from "@/lib/learning-path"
 import { Link, useLocation } from "react-router-dom"
+import { useState } from "react"
+import { Button } from "@/components/ui/button"
 
 const allTopics = learningPath.flatMap(p => p.topics)
 
@@ -10,6 +12,9 @@ export function Navbar() {
     const { currentStep, theme, toggleTheme } = useAppStore()
     const location = useLocation()
     const isModule = location.pathname.startsWith('/learn')
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+
+    const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
     return (
         <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -24,6 +29,7 @@ export function Navbar() {
                     <span className="text-lg font-bold tracking-tight">RustViz</span>
                 </Link>
 
+                {/* Desktop Navigation */}
                 <div className="hidden md:flex items-center gap-6 text-sm font-medium absolute left-1/2 -translate-x-1/2">
                     <Link
                         to="/"
@@ -69,8 +75,58 @@ export function Navbar() {
                     >
                         {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
                     </button>
+                    
+                    {/* Mobile Menu Button */}
+                    <Button variant="ghost" size="icon" className="md:hidden" onClick={toggleMenu}>
+                        {isMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                    </Button>
                 </div>
             </div>
+
+            {/* Mobile Menu */}
+            {isMenuOpen && (
+                <div className="md:hidden border-t border-border/40 bg-background">
+                    <div className="container py-4 flex flex-col gap-4">
+                        <Link
+                            to="/"
+                            onClick={() => setIsMenuOpen(false)}
+                            className={cn(
+                                "flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-muted",
+                                location.pathname === '/' ? "text-foreground bg-muted" : "text-muted-foreground"
+                            )}
+                        >
+                            Home
+                        </Link>
+                        <Link
+                            to="/learn"
+                            onClick={() => setIsMenuOpen(false)}
+                            className={cn(
+                                "flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-muted",
+                                location.pathname === '/learn' ? "text-foreground bg-muted" : "text-muted-foreground"
+                            )}
+                        >
+                            <Layers className="h-4 w-4" />
+                            Learning Path
+                        </Link>
+                        <Link
+                            to="/playground"
+                            onClick={() => setIsMenuOpen(false)}
+                            className={cn(
+                                "flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary p-2 rounded-md hover:bg-muted",
+                                location.pathname === '/playground' ? "text-foreground bg-muted" : "text-muted-foreground"
+                            )}
+                        >
+                            <BookOpen className="h-4 w-4" />
+                            Playground
+                        </Link>
+                        {isModule && (
+                            <div className="text-xs font-mono text-muted-foreground p-2 border-t mt-2">
+                                CURRENT PROGRESS: STEP {currentStep}/{allTopics.length}
+                            </div>
+                        )}
+                    </div>
+                </div>
+            )}
         </nav>
     )
 }
