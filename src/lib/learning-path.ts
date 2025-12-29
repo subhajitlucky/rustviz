@@ -64,7 +64,7 @@ export const learningPath: Phase[] = [
         id: "4", 
         title: "Immutable by Default", 
         description: "The fundamental safety of fixed values.", 
-        componentId: "syntax-basics",
+        componentId: "immutability",
         details: {
           definition: "Rust variables are immutable by default, meaning their values cannot be changed after binding. This prevents accidental data modification and improves thread safety.",
           syntax: "let x = 5;\n// x = 6; // Error!",
@@ -76,7 +76,7 @@ export const learningPath: Phase[] = [
         id: "5", 
         title: "Variable Shadowing", 
         description: "Reusing names for cleaner transformations.", 
-        componentId: "syntax-basics",
+        componentId: "shadowing",
         details: {
           definition: "Shadowing lets you declare a new variable with the same name as a previous one. It allows you to transform a value (or change its type) while keeping the same identifier.",
           syntax: "let x = 5;\nlet x = x + 1;\nlet x = \"text\";",
@@ -88,7 +88,7 @@ export const learningPath: Phase[] = [
         id: "6", 
         title: "Integer Depths", 
         description: "Navigating fixed-width numeric types.", 
-        componentId: "syntax-basics",
+        componentId: "integers",
         details: {
           definition: "Rust offers precise control over integer sizes, from 8-bit to 128-bit, both signed (i) and unsigned (u). This precision is vital for performance and memory optimization.",
           syntax: "let a: i32 = -5; // 32-bit signed\nlet b: u8 = 255; // 8-bit unsigned",
@@ -215,7 +215,7 @@ export const learningPath: Phase[] = [
         id: "16", 
         title: "While Conditionals", 
         description: "Looping until false.",
-        componentId: "control-flow",
+        componentId: "loops",
         details: {
           definition: "A 'while' loop executes a block of code as long as a boolean condition remains true.",
           syntax: "while number != 0 {\n    number -= 1;\n}",
@@ -227,7 +227,7 @@ export const learningPath: Phase[] = [
         id: "17", 
         title: "For Range Iteration", 
         description: "Safe sequence traversal.",
-        componentId: "control-flow",
+        componentId: "loops",
         details: {
           definition: "The 'for' loop in Rust is used to iterate over a collection or a range of numbers. It is safer and more idiomatic than C-style for loops.",
           syntax: "for i in 1..4 {\n    println!(\"{}\", i);\n}",
@@ -239,7 +239,7 @@ export const learningPath: Phase[] = [
         id: "18", 
         title: "Match: Pattern Match", 
         description: "The power of match.", 
-        componentId: "control-flow",
+        componentId: "match",
         details: {
           definition: "The 'match' expression allows you to compare a value against a series of patterns and execute code based on which pattern matches.",
           syntax: "match coin {\n    Coin::Penny => 1,\n    Coin::Nickel => 5,\n}",
@@ -251,7 +251,7 @@ export const learningPath: Phase[] = [
         id: "19", 
         title: "Destructuring Patterns", 
         description: "Unpacking data in match.",
-        componentId: "control-flow",
+        componentId: "destructuring",
         details: {
           definition: "Pattern matching can be used to 'destructure' or pull apart complex data types like tuples, enums, and structs to access their internal values.",
           syntax: "let (x, y) = (1, 2);\nmatch point {\n    Point { x, y: 0 } => println!(\"On x axis\"),\n}",

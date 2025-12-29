@@ -28,6 +28,9 @@ const FloatVis = lazy(() => import("@/modules/phase-1-basics/FloatVis"))
 const BooleanVis = lazy(() => import("@/modules/phase-1-basics/BooleanVis"))
 const UnicodeVis = lazy(() => import("@/modules/phase-1-basics/UnicodeVis"))
 const TupleVis = lazy(() => import("@/modules/phase-1-basics/TupleVis"))
+const ImmutabilityVis = lazy(() => import("@/modules/phase-1-basics/ImmutabilityVis"))
+const ShadowingVis = lazy(() => import("@/modules/phase-1-basics/ShadowingVis"))
+const IntegerVis = lazy(() => import("@/modules/phase-1-basics/IntegerVis"))
 
 // Phase 2 Modules
 const ModulesVis = lazy(() => import("@/modules/phase-2-abstraction/ModulesVis"))
@@ -37,6 +40,9 @@ const IteratorsVis = lazy(() => import("@/modules/phase-2-abstraction/IteratorsV
 const ClosuresVis = lazy(() => import("@/modules/phase-2-abstraction/ClosuresVis"))
 const CollectionsVis = lazy(() => import("@/modules/phase-2-abstraction/CollectionsVis"))
 const ErrorPatternsVis = lazy(() => import("@/modules/phase-2-abstraction/ErrorPatternsVis"))
+const MatchVis = lazy(() => import("@/modules/phase-2-abstraction/MatchVis"))
+const LoopsVis = lazy(() => import("@/modules/phase-2-abstraction/LoopsVis"))
+const DestructuringVis = lazy(() => import("@/modules/phase-2-abstraction/DestructuringVis"))
 
 // Phase 3 Modules (Named Exports)
 const SmartPointersVis = lazy(() => import("@/modules/phase-3-advanced/SmartPointersVis").then(m => ({ default: m.SmartPointersVis })))
@@ -78,9 +84,15 @@ const COMPONENT_MAP: Record<string, React.ComponentType> = {
   "syntax-basics": SyntaxBasics,
   "functions": FunctionsVis,
   "control-flow": ControlFlowVis,
+  "match": MatchVis,
+  "loops": LoopsVis,
+  "destructuring": DestructuringVis,
   "slices": SlicesVis,
   "option-result": OptionResultVis,
   "println-macro": PrintMacros,
+  "immutability": ImmutabilityVis,
+  "shadowing": ShadowingVis,
+  "integers": IntegerVis,
   "float-precision": FloatVis,
   "boolean-logic": BooleanVis,
   "unicode-char": UnicodeVis,
