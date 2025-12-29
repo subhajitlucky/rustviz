@@ -734,7 +734,7 @@ export const learningPath: Phase[] = [
         id: "57", 
         title: "Multiple Bounds", 
         description: "The + syntax for traits.",
-        componentId: "traits",
+        componentId: "trait-bounds",
         details: {
           definition: "You can specify that a generic type must implement multiple traits using the '+' syntax.",
           syntax: "fn notify(item: &(impl Summary + Display)) { ... }",
@@ -745,7 +745,7 @@ export const learningPath: Phase[] = [
       { 
         id: "58", 
         title: "Where Clauses", 
-        componentId: "traits",
+        componentId: "trait-bounds",
         description: "Cleaner generic constraints.",
         details: {
           definition: "When trait bounds become too long, you can move them to a 'where' clause after the function signature for better readability.",
@@ -756,7 +756,7 @@ export const learningPath: Phase[] = [
       },
       { 
         id: "59", 
-        componentId: "traits",
+        componentId: "trait-bounds",
         title: "Returning Traits", 
         description: "The impl Trait syntax.",
         details: {
@@ -767,7 +767,7 @@ export const learningPath: Phase[] = [
         }
       },
       { 
-        componentId: "traits",
+        componentId: "derive",
         id: "60", 
         title: "Derive Magic", 
         description: "Automatic trait implementations.",

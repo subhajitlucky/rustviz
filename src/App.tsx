@@ -31,10 +31,14 @@ const ImmutabilityVis = lazy(() => import("@/modules/phase-1-basics/Immutability
 const ShadowingVis = lazy(() => import("@/modules/phase-1-basics/ShadowingVis"))
 const IntegerVis = lazy(() => import("@/modules/phase-1-basics/IntegerVis"))
 
+// Phase 6 Abstraction Modules
+const GenericsVis = lazy(() => import("@/modules/phase-6-abstraction/GenericsVis"))
+const TraitsVis = lazy(() => import("@/modules/phase-6-abstraction/TraitsVis"))
+const TraitBoundsVis = lazy(() => import("@/modules/phase-6-abstraction/TraitBoundsVis"))
+const DeriveVis = lazy(() => import("@/modules/phase-6-abstraction/DeriveVis"))
+
 // Phase 2 Modules
 const ModulesVis = lazy(() => import("@/modules/phase-2-abstraction/ModulesVis"))
-const GenericsVis = lazy(() => import("@/modules/phase-2-abstraction/GenericsVis"))
-const TraitsVis = lazy(() => import("@/modules/phase-2-abstraction/TraitsVis"))
 const IteratorsVis = lazy(() => import("@/modules/phase-2-abstraction/IteratorsVis"))
 const ClosuresVis = lazy(() => import("@/modules/phase-2-abstraction/ClosuresVis"))
 const MatchVis = lazy(() => import("@/modules/phase-2-abstraction/MatchVis"))
@@ -130,6 +134,8 @@ const COMPONENT_MAP: Record<string, React.ComponentType> = {
   "sugar": SugarVis,
   "error-patterns": ErrorPatternsVis,
   "collections": CollectionsVis,
+  "trait-bounds": TraitBoundsVis,
+  "derive": DeriveVis,
   "compiler-logic": CompilerLogic,
   "problem-solving": ProblemSolving,
   "congrats": Congrats,
