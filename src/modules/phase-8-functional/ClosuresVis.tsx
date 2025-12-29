@@ -90,6 +90,33 @@ let c = move || println!("{}", s);
                     </motion.div>
                 </div>
             )
+        },
+        {
+            title: "The Fn Traits",
+            description: "Closures implement traits based on how they capture variables: Fn (borrow), FnMut (mutable borrow), or FnOnce (move).",
+            code: `fn call_fn<F: Fn()>(f: F) { f() }
+fn call_mut<F: FnMut()>(mut f: F) { f() }
+fn call_once<F: FnOnce()>(f: F) { f() }`,
+            highlightedLines: [1, 2, 3],
+            visualComponent: (
+                <div className="grid grid-cols-3 gap-4 h-full items-center">
+                    <div className="p-4 border rounded-lg bg-blue-500/10 border-blue-500/30 flex flex-col items-center gap-2">
+                        <div className="font-bold text-blue-400">Fn</div>
+                        <div className="text-xs text-center text-muted-foreground">Captures by &T</div>
+                        <div className="text-[10px] bg-blue-500/20 px-2 py-1 rounded">Callable many times</div>
+                    </div>
+                    <div className="p-4 border rounded-lg bg-yellow-500/10 border-yellow-500/30 flex flex-col items-center gap-2">
+                        <div className="font-bold text-yellow-400">FnMut</div>
+                        <div className="text-xs text-center text-muted-foreground">Captures by &mut T</div>
+                        <div className="text-[10px] bg-yellow-500/20 px-2 py-1 rounded">Callable many times</div>
+                    </div>
+                    <div className="p-4 border rounded-lg bg-red-500/10 border-red-500/30 flex flex-col items-center gap-2">
+                        <div className="font-bold text-red-400">FnOnce</div>
+                        <div className="text-xs text-center text-muted-foreground">Captures by value</div>
+                        <div className="text-[10px] bg-red-500/20 px-2 py-1 rounded">Callable ONCE</div>
+                    </div>
+                </div>
+            )
         }
     ]
 

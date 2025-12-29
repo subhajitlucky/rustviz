@@ -39,11 +39,14 @@ const DeriveVis = lazy(() => import("@/modules/phase-6-abstraction/DeriveVis"))
 
 // Phase 2 Modules
 const ModulesVis = lazy(() => import("@/modules/phase-2-abstraction/ModulesVis"))
-const IteratorsVis = lazy(() => import("@/modules/phase-2-abstraction/IteratorsVis"))
-const ClosuresVis = lazy(() => import("@/modules/phase-2-abstraction/ClosuresVis"))
 const MatchVis = lazy(() => import("@/modules/phase-2-abstraction/MatchVis"))
 const LoopsVis = lazy(() => import("@/modules/phase-2-abstraction/LoopsVis"))
 const DestructuringVis = lazy(() => import("@/modules/phase-2-abstraction/DestructuringVis"))
+
+// Phase 8 Functional Modules
+const ClosuresVis = lazy(() => import("@/modules/phase-8-functional/ClosuresVis"))
+const IteratorsVis = lazy(() => import("@/modules/phase-8-functional/IteratorsVis"))
+
 // Phase 3 Modules
 const OwnershipVis = lazy(() => import("@/modules/phase-3-ownership/OwnershipVis"))
 const BorrowingVis = lazy(() => import("@/modules/phase-3-ownership/BorrowingVis"))

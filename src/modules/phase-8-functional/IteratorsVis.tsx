@@ -65,6 +65,64 @@ let iter = v.iter()
                     <div className="text-xs font-bold text-green-500 uppercase tracking-widest">Status: COLLECTED</div>
                 </div>
             )
+        },
+        {
+            title: "Fold & Reduce",
+            description: "Condensing a sequence into a single value.",
+            code: `let sum = vec![1, 2, 3]
+    .iter()
+    .fold(0, |acc, x| acc + x);
+// sum is 6`,
+            highlightedLines: [3],
+            visualComponent: (
+                <div className="flex flex-col items-center justify-center gap-6 h-full">
+                    <div className="flex gap-4 items-center">
+                        <div className="flex flex-col items-center gap-2">
+                            <div className="text-xs text-muted-foreground">Accumulator</div>
+                            <motion.div 
+                                animate={{ scale: [1, 1.2, 1] }}
+                                transition={{ repeat: Infinity, duration: 2 }}
+                                className="h-12 w-12 bg-blue-500 rounded-full flex items-center justify-center font-bold text-white"
+                            >
+                                6
+                            </motion.div>
+                        </div>
+                        <div className="text-2xl text-muted-foreground">←</div>
+                        <div className="flex gap-2 opacity-50">
+                            <div className="h-8 w-8 bg-slate-700 rounded flex items-center justify-center text-xs">1</div>
+                            <div className="h-8 w-8 bg-slate-700 rounded flex items-center justify-center text-xs">2</div>
+                            <div className="h-8 w-8 bg-slate-700 rounded flex items-center justify-center text-xs">3</div>
+                        </div>
+                    </div>
+                    <p className="text-xs text-muted-foreground max-w-[200px] text-center">
+                        Fold starts with an initial value (0) and combines it with each element.
+                    </p>
+                </div>
+            )
+        },
+        {
+            title: "IntoIterator",
+            description: "The trait that powers 'for' loops. It converts a collection into an iterator.",
+            code: `let v = vec![1, 2, 3];
+// Implicitly calls v.into_iter()
+for x in v {
+    println!("{}", x);
+}`,
+            highlightedLines: [3],
+            visualComponent: (
+                <div className="flex flex-col items-center justify-center gap-6 h-full">
+                    <div className="p-4 border-2 border-dashed border-slate-600 rounded-lg flex items-center gap-4">
+                        <div className="text-sm font-mono">Vec&lt;i32&gt;</div>
+                        <div className="text-xl">→</div>
+                        <div className="px-3 py-1 bg-primary/20 rounded text-primary font-bold text-xs">IntoIterator</div>
+                        <div className="text-xl">→</div>
+                        <div className="text-sm font-mono">Iterator</div>
+                    </div>
+                    <p className="text-xs text-muted-foreground text-center">
+                        This trait is the bridge between collections and loops.
+                    </p>
+                </div>
+            )
         }
     ]
 
