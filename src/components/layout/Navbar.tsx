@@ -13,7 +13,7 @@ export function Navbar() {
 
     return (
         <nav className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-            <div className="container flex h-16 items-center justify-between">
+            <div className="container flex h-16 items-center justify-between relative">
                 <Link
                     to="/"
                     className="flex items-center gap-2 cursor-pointer group"
@@ -24,7 +24,7 @@ export function Navbar() {
                     <span className="text-lg font-bold tracking-tight">RustViz</span>
                 </Link>
 
-                <div className="hidden md:flex items-center gap-6 text-sm font-medium">
+                <div className="hidden md:flex items-center gap-6 text-sm font-medium absolute left-1/2 -translate-x-1/2">
                     <Link
                         to="/"
                         className={cn(
@@ -54,21 +54,21 @@ export function Navbar() {
                         <BookOpen className="h-4 w-4" />
                         Playground
                     </Link>
-                    <button
-                        onClick={toggleTheme}
-                        className="flex items-center gap-2 transition-colors text-muted-foreground hover:text-primary ml-2"
-                        title="Toggle theme"
-                    >
-                        {theme === 'dark' ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
-                    </button>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-4">
                     {isModule && (
                         <div className="text-xs font-mono text-muted-foreground hidden lg:block">
                             STEP: {currentStep}/{allTopics.length}
                         </div>
                     )}
+                    <button
+                        onClick={toggleTheme}
+                        className="flex items-center justify-center transition-colors text-muted-foreground hover:text-primary"
+                        title="Toggle theme"
+                    >
+                        {theme === 'dark' ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+                    </button>
                 </div>
             </div>
         </nav>
