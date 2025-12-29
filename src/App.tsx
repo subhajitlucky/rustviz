@@ -58,12 +58,12 @@ const ExplicitLifetimesVis = lazy(() => import("@/modules/phase-7-chronos/Explic
 const TestingVis = lazy(() => import("@/modules/phase-3-advanced/TestingVis").then(m => ({ default: m.TestingVis })))
 const CargoVis = lazy(() => import("@/modules/phase-3-advanced/CargoVis").then(m => ({ default: m.CargoVis })))
 
-// Phase 4 Modules (Named Exports)
-const AsyncVis = lazy(() => import("@/modules/phase-4-systems/AsyncVis").then(m => ({ default: m.AsyncVis })))
-const UnsafeVis = lazy(() => import("@/modules/phase-4-systems/UnsafeVis").then(m => ({ default: m.UnsafeVis })))
-const MemoryLayoutVis = lazy(() => import("@/modules/phase-4-systems/MemoryLayoutVis").then(m => ({ default: m.MemoryLayoutVis })))
+// Phase 10 Graduation Modules (Named Exports)
+const AsyncVis = lazy(() => import("@/modules/phase-10-graduation/AsyncVis").then(m => ({ default: m.AsyncVis })))
+const UnsafeVis = lazy(() => import("@/modules/phase-10-graduation/UnsafeVis").then(m => ({ default: m.UnsafeVis })))
+const MemoryLayoutVis = lazy(() => import("@/modules/phase-10-graduation/MemoryLayoutVis").then(m => ({ default: m.MemoryLayoutVis })))
 const AdvancedTraitsVis = lazy(() => import("@/modules/phase-7-chronos/AdvancedTraitsVis").then(m => ({ default: m.AdvancedTraitsVis })))
-const MacrosVis = lazy(() => import("@/modules/phase-4-systems/MacrosVis").then(m => ({ default: m.MacrosVis })))
+const MacrosVis = lazy(() => import("@/modules/phase-10-graduation/MacrosVis").then(m => ({ default: m.MacrosVis })))
 
 // Phase 4 Data Modules
 const StructsVis = lazy(() => import("@/modules/phase-4-data/StructsVis"))
@@ -76,9 +76,9 @@ const ErrorPatternsVis = lazy(() => import("@/modules/phase-5-safety/ErrorPatter
 const CollectionsVis = lazy(() => import("@/modules/phase-5-safety/CollectionsVis"))
 
 // Graduation Modules
-const CompilerLogic = lazy(() => import("@/modules/step-09-compiler/CompilerLogic"))
-const ProblemSolving = lazy(() => import("@/modules/step-10-problems/ProblemSolving"))
-const Congrats = lazy(() => import("@/modules/graduation/Congrats"))
+const CompilerLogic = lazy(() => import("@/modules/phase-10-graduation/CompilerLogic"))
+const ProblemSolving = lazy(() => import("@/modules/phase-10-graduation/ProblemSolving"))
+const Congrats = lazy(() => import("@/modules/phase-10-graduation/Congrats"))
 const Playground = lazy(() => import("@/components/playground/Playground").then(m => ({ default: m.Playground })))
 
 import { useAppStore } from '@/store/useAppStore'
