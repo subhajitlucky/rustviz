@@ -548,6 +548,7 @@ export const learningPath: Phase[] = [
         id: "42", 
         title: "The Panic Protocol", 
         description: "Unrecoverable error handling.",
+        componentId: "panic",
         details: {
           definition: "A panic is an unrecoverable error that causes the program to stop immediately. It should only be used for bugs that represent a corrupted state.",
           syntax: "panic!(\"System corrupted\");",
@@ -559,6 +560,7 @@ export const learningPath: Phase[] = [
         id: "43", 
         title: "If Let Sugar", 
         description: "Concise pattern matching.",
+        componentId: "sugar",
         details: {
           definition: "'if let' is a cleaner way to handle enums when you only care about one specific variant, reducing the noise of a full match.",
           syntax: "if let Some(x) = opt { println!(\"{}\", x); }",
@@ -570,6 +572,7 @@ export const learningPath: Phase[] = [
         id: "44", 
         title: "While Let Sugar", 
         description: "Looping until pattern mismatch.",
+        componentId: "sugar",
         details: {
           definition: "'while let' repeatedly executes a block as long as a pattern continues to match the provided value.",
           syntax: "while let Some(x) = iter.next() { ... }",

@@ -37,8 +37,6 @@ const GenericsVis = lazy(() => import("@/modules/phase-2-abstraction/GenericsVis
 const TraitsVis = lazy(() => import("@/modules/phase-2-abstraction/TraitsVis"))
 const IteratorsVis = lazy(() => import("@/modules/phase-2-abstraction/IteratorsVis"))
 const ClosuresVis = lazy(() => import("@/modules/phase-2-abstraction/ClosuresVis"))
-const CollectionsVis = lazy(() => import("@/modules/phase-2-abstraction/CollectionsVis"))
-const ErrorPatternsVis = lazy(() => import("@/modules/phase-2-abstraction/ErrorPatternsVis"))
 const MatchVis = lazy(() => import("@/modules/phase-2-abstraction/MatchVis"))
 const LoopsVis = lazy(() => import("@/modules/phase-2-abstraction/LoopsVis"))
 const DestructuringVis = lazy(() => import("@/modules/phase-2-abstraction/DestructuringVis"))
@@ -63,6 +61,12 @@ const MacrosVis = lazy(() => import("@/modules/phase-4-systems/MacrosVis").then(
 // Phase 4 Data Modules
 const StructsVis = lazy(() => import("@/modules/phase-4-data/StructsVis"))
 const EnumsVis = lazy(() => import("@/modules/phase-4-data/EnumsVis"))
+
+// Phase 5 Safety Modules
+const PanicVis = lazy(() => import("@/modules/phase-5-safety/PanicVis"))
+const SugarVis = lazy(() => import("@/modules/phase-5-safety/SugarVis"))
+const ErrorPatternsVis = lazy(() => import("@/modules/phase-5-safety/ErrorPatternsVis"))
+const CollectionsVis = lazy(() => import("@/modules/phase-5-safety/CollectionsVis"))
 
 // Graduation Modules
 const CompilerLogic = lazy(() => import("@/modules/step-09-compiler/CompilerLogic"))
@@ -110,8 +114,6 @@ const COMPONENT_MAP: Record<string, React.ComponentType> = {
   "traits": TraitsVis,
   "iterators": IteratorsVis,
   "closures": ClosuresVis,
-  "collections": CollectionsVis,
-  "error-patterns": ErrorPatternsVis,
   "smart-pointers": SmartPointersVis,
   "interior-mutability": InteriorMutabilityVis,
   "explicit-lifetimes": ExplicitLifetimesVis,
@@ -124,6 +126,10 @@ const COMPONENT_MAP: Record<string, React.ComponentType> = {
   "macros": MacrosVis,
   "structs": StructsVis,
   "enums": EnumsVis,
+  "panic": PanicVis,
+  "sugar": SugarVis,
+  "error-patterns": ErrorPatternsVis,
+  "collections": CollectionsVis,
   "compiler-logic": CompilerLogic,
   "problem-solving": ProblemSolving,
   "congrats": Congrats,
