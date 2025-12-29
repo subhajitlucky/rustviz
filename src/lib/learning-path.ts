@@ -366,6 +366,7 @@ export const learningPath: Phase[] = [
         id: "28", 
         title: "NLL: Non-Lexical Lifetimes", 
         description: "Smart compiler analysis.",
+        componentId: "lifetimes",
         details: {
           definition: "NLL is a compiler feature that makes the borrow checker smarter by tracking the actual usage of references rather than just their block scope.",
           syntax: "let mut s = String::from(\"hi\");\nlet r1 = &s;\nprintln!(\"{}\", r1);\nlet r2 = &mut s; // OK because r1 is no longer used",
@@ -377,6 +378,7 @@ export const learningPath: Phase[] = [
         id: "29", 
         title: "Dangling Pointers", 
         description: "How Rust prevents them.",
+        componentId: "lifetimes",
         details: {
           definition: "A dangling pointer is a pointer that references a location in memory that may have been given to someone else. Rust prevents this through its lifetime system.",
           syntax: "fn dangle() -> &String {\n    let s = String::from(\"hi\");\n    &s // Error: s is dropped!\n}",
@@ -388,6 +390,7 @@ export const learningPath: Phase[] = [
         id: "30", 
         title: "Memory Safety Summary", 
         description: "The visual mental model.",
+        componentId: "ownership",
         details: {
           definition: "By combining ownership, borrowing, and lifetimes, Rust achieves complete memory safety without the overhead of a garbage collector.",
           syntax: "// No special syntax - it's the sum of all parts",
@@ -442,6 +445,7 @@ export const learningPath: Phase[] = [
         id: "34", 
         title: "Tuple Structs", 
         description: "Unnamed field data structures.",
+        componentId: "structs-enums",
         details: {
           definition: "Tuple structs look like tuples but have a name. They are useful for creating distinct types when field names would be redundant.",
           syntax: "struct Color(i32, i32, i32);\nlet black = Color(0, 0, 0);",
