@@ -4,7 +4,7 @@ import { Binary } from "lucide-react"
 
 export default function FloatVis() {
     const [precision, setPrecision] = useState(10)
-    const pi = 3.14159265358979323846
+    const pi = 3.141592653589793
 
     return (
         <div className="space-y-8">

@@ -1,62 +1,66 @@
 import { Layout } from '@/components/layout/Layout'
 import { Button } from '@/components/ui/button'
 
-// Modules
-import WhyRust from "@/modules/step-01-why-rust/WhyRust"
-import MemoryModel from "@/modules/step-02-memory/MemoryModel"
-import OwnershipRules from "@/modules/step-03-ownership/OwnershipRules"
-import Borrowing from "@/modules/step-04-borrowing/Borrowing"
-import Lifetimes from "@/modules/step-05-lifetimes/Lifetimes"
-import StructsEnums from "@/modules/step-06-structs/StructsEnums"
-import ErrorHandling from "@/modules/step-07-error-handling/ErrorHandling"
-import Concurrency from "@/modules/step-08-concurrency/Concurrency"
+import { lazy, Suspense, useEffect } from 'react'
+import { Loader2 } from "lucide-react"
+import { GenericVis } from "@/components/visualizer/GenericVis"
+
+// Lazy Load Modules
+const WhyRust = lazy(() => import("@/modules/step-01-why-rust/WhyRust"))
+const MemoryModel = lazy(() => import("@/modules/step-02-memory/MemoryModel"))
+const OwnershipRules = lazy(() => import("@/modules/step-03-ownership/OwnershipRules"))
+const Borrowing = lazy(() => import("@/modules/step-04-borrowing/Borrowing"))
+const Lifetimes = lazy(() => import("@/modules/step-05-lifetimes/Lifetimes"))
+const StructsEnums = lazy(() => import("@/modules/step-06-structs/StructsEnums"))
+const ErrorHandling = lazy(() => import("@/modules/step-07-error-handling/ErrorHandling"))
+const Concurrency = lazy(() => import("@/modules/step-08-concurrency/Concurrency"))
 
 // Phase 1 Modules
-import SyntaxBasics from "@/modules/phase-1-basics/SyntaxBasics"
-import FunctionsVis from "@/modules/phase-1-basics/FunctionsVis"
-import ControlFlowVis from "@/modules/phase-1-basics/ControlFlowVis"
-import SlicesVis from "@/modules/phase-1-basics/SlicesVis"
-import OptionResultVis from "@/modules/phase-1-basics/OptionResultVis"
-import PrintMacros from "@/modules/phase-1-basics/PrintMacros"
+const SyntaxBasics = lazy(() => import("@/modules/phase-1-basics/SyntaxBasics"))
+const FunctionsVis = lazy(() => import("@/modules/phase-1-basics/FunctionsVis"))
+const ControlFlowVis = lazy(() => import("@/modules/phase-1-basics/ControlFlowVis"))
+const SlicesVis = lazy(() => import("@/modules/phase-1-basics/SlicesVis"))
+const OptionResultVis = lazy(() => import("@/modules/phase-1-basics/OptionResultVis"))
+const PrintMacros = lazy(() => import("@/modules/phase-1-basics/PrintMacros"))
 
 // Phase 1 Additional
-import FloatVis from "@/modules/phase-1-basics/FloatVis"
-import BooleanVis from "@/modules/phase-1-basics/BooleanVis"
-import UnicodeVis from "@/modules/phase-1-basics/UnicodeVis"
-import TupleVis from "@/modules/phase-1-basics/TupleVis"
+const FloatVis = lazy(() => import("@/modules/phase-1-basics/FloatVis"))
+const BooleanVis = lazy(() => import("@/modules/phase-1-basics/BooleanVis"))
+const UnicodeVis = lazy(() => import("@/modules/phase-1-basics/UnicodeVis"))
+const TupleVis = lazy(() => import("@/modules/phase-1-basics/TupleVis"))
 
 // Phase 2 Modules
-import ModulesVis from "@/modules/phase-2-abstraction/ModulesVis"
-import GenericsVis from "@/modules/phase-2-abstraction/GenericsVis"
-import TraitsVis from "@/modules/phase-2-abstraction/TraitsVis"
-import IteratorsVis from "@/modules/phase-2-abstraction/IteratorsVis"
-import ClosuresVis from "@/modules/phase-2-abstraction/ClosuresVis"
-import CollectionsVis from "@/modules/phase-2-abstraction/CollectionsVis"
-import ErrorPatternsVis from "@/modules/phase-2-abstraction/ErrorPatternsVis"
+const ModulesVis = lazy(() => import("@/modules/phase-2-abstraction/ModulesVis"))
+const GenericsVis = lazy(() => import("@/modules/phase-2-abstraction/GenericsVis"))
+const TraitsVis = lazy(() => import("@/modules/phase-2-abstraction/TraitsVis"))
+const IteratorsVis = lazy(() => import("@/modules/phase-2-abstraction/IteratorsVis"))
+const ClosuresVis = lazy(() => import("@/modules/phase-2-abstraction/ClosuresVis"))
+const CollectionsVis = lazy(() => import("@/modules/phase-2-abstraction/CollectionsVis"))
+const ErrorPatternsVis = lazy(() => import("@/modules/phase-2-abstraction/ErrorPatternsVis"))
 
-// Phase 3 Modules
-import SmartPointers from "@/modules/phase-3-advanced/SmartPointers"
-import InteriorMutability from "@/modules/phase-3-advanced/InteriorMutability"
-import ExplicitLifetimes from "@/modules/phase-3-advanced/ExplicitLifetimes"
-import Testing from "@/modules/phase-3-advanced/Testing"
-import Cargo from "@/modules/phase-3-advanced/Cargo"
+// Phase 3 Modules (Named Exports)
+const SmartPointersVis = lazy(() => import("@/modules/phase-3-advanced/SmartPointersVis").then(m => ({ default: m.SmartPointersVis })))
+const InteriorMutabilityVis = lazy(() => import("@/modules/phase-3-advanced/InteriorMutabilityVis").then(m => ({ default: m.InteriorMutabilityVis })))
+const ExplicitLifetimesVis = lazy(() => import("@/modules/phase-3-advanced/ExplicitLifetimesVis").then(m => ({ default: m.ExplicitLifetimesVis })))
+const TestingVis = lazy(() => import("@/modules/phase-3-advanced/TestingVis").then(m => ({ default: m.TestingVis })))
+const CargoVis = lazy(() => import("@/modules/phase-3-advanced/CargoVis").then(m => ({ default: m.CargoVis })))
 
-// Phase 4 Modules
-import Async from "@/modules/phase-4-systems/Async"
-import Unsafe from "@/modules/phase-4-systems/Unsafe"
-import MemoryLayout from "@/modules/phase-4-systems/MemoryLayout"
-import AdvancedTraits from "@/modules/phase-4-systems/AdvancedTraits"
-import Macros from "@/modules/phase-4-systems/Macros"
+// Phase 4 Modules (Named Exports)
+const AsyncVis = lazy(() => import("@/modules/phase-4-systems/AsyncVis").then(m => ({ default: m.AsyncVis })))
+const UnsafeVis = lazy(() => import("@/modules/phase-4-systems/UnsafeVis").then(m => ({ default: m.UnsafeVis })))
+const MemoryLayoutVis = lazy(() => import("@/modules/phase-4-systems/MemoryLayoutVis").then(m => ({ default: m.MemoryLayoutVis })))
+const AdvancedTraitsVis = lazy(() => import("@/modules/phase-4-systems/AdvancedTraitsVis").then(m => ({ default: m.AdvancedTraitsVis })))
+const MacrosVis = lazy(() => import("@/modules/phase-4-systems/MacrosVis").then(m => ({ default: m.MacrosVis })))
 
 // Graduation Modules
-import CompilerLogic from "@/modules/step-09-compiler/CompilerLogic"
-import ProblemSolving from "@/modules/step-10-problems/ProblemSolving"
-import Congrats from "@/modules/graduation/Congrats"
+const CompilerLogic = lazy(() => import("@/modules/step-09-compiler/CompilerLogic"))
+const ProblemSolving = lazy(() => import("@/modules/step-10-problems/ProblemSolving"))
+const Congrats = lazy(() => import("@/modules/graduation/Congrats"))
+const Playground = lazy(() => import("@/components/playground/Playground").then(m => ({ default: m.Playground })))
 
 import { useAppStore } from '@/store/useAppStore'
 import { Roadmap } from '@/components/Roadmap'
 import { Layers, BookOpen, Terminal, List } from "lucide-react"
-import { useEffect } from 'react'
 import { learningPath } from '@/lib/learning-path'
 import { TopicContent } from '@/components/TopicContent'
 
@@ -88,16 +92,16 @@ const COMPONENT_MAP: Record<string, React.ComponentType> = {
   "closures": ClosuresVis,
   "collections": CollectionsVis,
   "error-patterns": ErrorPatternsVis,
-  "smart-pointers": SmartPointers,
-  "interior-mutability": InteriorMutability,
-  "explicit-lifetimes": ExplicitLifetimes,
-  "testing": Testing,
-  "cargo": Cargo,
-  "async": Async,
-  "unsafe": Unsafe,
-  "memory-layout": MemoryLayout,
-  "advanced-traits": AdvancedTraits,
-  "macros": Macros,
+  "smart-pointers": SmartPointersVis,
+  "interior-mutability": InteriorMutabilityVis,
+  "explicit-lifetimes": ExplicitLifetimesVis,
+  "testing": TestingVis,
+  "cargo": CargoVis,
+  "async": AsyncVis,
+  "unsafe": UnsafeVis,
+  "memory-layout": MemoryLayoutVis,
+  "advanced-traits": AdvancedTraitsVis,
+  "macros": MacrosVis,
   "compiler-logic": CompilerLogic,
   "problem-solving": ProblemSolving,
   "congrats": Congrats,
@@ -125,6 +129,14 @@ export default function App() {
   const currentTopic = allTopics[currentStep - 1]
   const CurrentComponent = currentTopic?.componentId ? COMPONENT_MAP[currentTopic.componentId] : null
 
+  useEffect(() => {
+    if (currentTopic) {
+      document.title = `${currentTopic.title} - RustViz`
+    } else {
+      document.title = "RustViz - Interactive Rust Learning"
+    }
+  }, [currentTopic])
+
   return (
     <Layout>
       {view === 'home' && (
@@ -140,7 +152,7 @@ export default function App() {
               <Button size="lg" className="h-14 px-10 text-lg rounded-full shadow-lg shadow-primary/20" onClick={() => setView('roadmap')}>
                 View Learning Path
               </Button>
-              <Button variant="outline" size="lg" className="h-14 px-10 text-lg rounded-full" onClick={() => window.open('https://play.rust-lang.org/', '_blank')}>
+              <Button variant="outline" size="lg" className="h-14 px-10 text-lg rounded-full" onClick={() => setView('playground')}>
                 Rust Playground ↗
               </Button>
             </div>
@@ -183,12 +195,30 @@ export default function App() {
         </div>
       )}
 
+      {view === 'playground' && (
+        <div className="animate-in fade-in slide-in-from-bottom-8 duration-500 max-w-6xl mx-auto">
+          <div className="mb-8 flex items-center justify-between">
+            <h2 className="text-3xl font-bold">Interactive Playground</h2>
+            <Button variant="outline" onClick={() => setView('home')}>Back to Home</Button>
+          </div>
+          <Suspense fallback={<div className="h-[600px] flex items-center justify-center"><Loader2 className="animate-spin text-primary" /></div>}>
+            <Playground />
+          </Suspense>
+        </div>
+      )}
+
       {view === 'module' && currentTopic && (
         <div className="max-w-4xl mx-auto space-y-12">
           <div className="animate-in fade-in slide-in-from-right-4 duration-500">
              <TopicContent 
                 topic={currentTopic} 
-                visualizer={CurrentComponent ? <CurrentComponent /> : null} 
+                visualizer={
+                  CurrentComponent ? (
+                    <Suspense fallback={<div className="h-[400px] flex items-center justify-center"><Loader2 className="animate-spin text-primary" /></div>}>
+                      <CurrentComponent />
+                    </Suspense>
+                  ) : <GenericVis topic={currentTopic} />
+                } 
              />
           </div>
 

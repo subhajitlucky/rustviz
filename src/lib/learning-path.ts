@@ -258,13 +258,14 @@ export const learningPath: Phase[] = [
       },
       { 
         id: "20", 
-        title: "Block Scoping", 
-        description: "Private variables in code blocks.",
+        title: "Modules & Visibility", 
+        description: "Organizing code with privacy.",
+        componentId: "modules",
         details: {
-          definition: "A block is a collection of statements and expressions enclosed in curly braces. Variables defined inside a block are 'dropped' and inaccessible once the block ends.",
-          syntax: "{\n    let x = 10;\n} // x is gone here",
-          practical: "let outer = 5;\n{\n    let inner = 10;\n    println!(\"{}\", outer + inner);\n} // inner is dropped",
-          explanation: "Scoping allows you to limit the lifetime of variables and manage memory efficiently without manual cleanup."
+          definition: "Modules let you organize code within a crate into groups for readability and easy reuse. They also control the privacy of items.",
+          syntax: "mod front_of_house {\n    pub mod hosting {\n        pub fn add_to_waitlist() {}\n    }\n}",
+          practical: "use crate::front_of_house::hosting;\nhosting::add_to_waitlist();",
+          explanation: "By default, everything in Rust is private. The 'pub' keyword is used to make items public and accessible from outside their module."
         }
       }
     ]
@@ -645,16 +646,126 @@ export const learningPath: Phase[] = [
     title: "Phase 6: Abstraction",
     color: "bg-indigo-500",
     topics: [
-      { id: "51", title: "Generic Types", description: "Abstracting over types.", componentId: "generics" },
-      { id: "52", title: "Generic Methods", description: "Behavior for any type.", componentId: "generics" },
-      { id: "53", title: "Trait Definition", description: "Defining shared behavior.", componentId: "traits" },
-      { id: "54", title: "Implementing Traits", description: "Applying behaviors to types.", componentId: "traits" },
-      { id: "55", title: "Trait Parameters", description: "Functions accepting traits.", componentId: "traits" },
-      { id: "56", title: "Default Methods", description: "Traits with basic logic." },
-      { id: "57", title: "Multiple Bounds", description: "The + syntax for traits." },
-      { id: "58", title: "Where Clauses", description: "Cleaner generic constraints." },
-      { id: "59", title: "Returning Traits", description: "The impl Trait syntax." },
-      { id: "60", title: "Derive Magic", description: "Automatic trait implementations." }
+      { 
+        id: "51", 
+        title: "Generic Types", 
+        description: "Abstracting over types.", 
+        componentId: "generics",
+        details: {
+          definition: "Generics allow you to write code that works with multiple types. They are zero-cost abstractions, meaning the compiler generates specific code for each type used.",
+          syntax: "struct Point<T> {\n    x: T,\n    y: T,\n}",
+          practical: "let integer_point = Point { x: 5, y: 10 };\nlet float_point = Point { x: 1.0, y: 4.0 };",
+          explanation: "By using <T>, you tell the compiler 'this works for any type T'. At compile time, Rust creates a specific version for i32, f64, etc."
+        }
+      },
+      { 
+        id: "52", 
+        title: "Generic Methods", 
+        description: "Behavior for any type.", 
+        componentId: "generics",
+        details: {
+          definition: "You can define methods on generic structs. These methods can also be generic themselves, independent of the struct's generic type.",
+          syntax: "impl<T> Point<T> {\n    fn x(&self) -> &T { &self.x }\n}",
+          practical: "let p = Point { x: 5, y: 10 };\nprintln!(\"p.x = {}\", p.x());",
+          explanation: "The 'impl<T>' declares the generic parameter so it can be used in 'Point<T>'. You can also implement methods only for specific types like 'impl Point<f32>'."
+        }
+      },
+      { 
+        id: "53", 
+        title: "Trait Definition", 
+        description: "Defining shared behavior.", 
+        componentId: "traits",
+        details: {
+          definition: "A trait defines functionality a particular type has and can share with other types. It's similar to interfaces in other languages.",
+          syntax: "trait Summary {\n    fn summarize(&self) -> String;\n}",
+          practical: "pub trait Display {\n    fn fmt(&self, f: &mut Formatter) -> Result;\n}",
+          explanation: "Traits allow you to define a set of methods that must be implemented by any type that claims to support that trait."
+        }
+      },
+      { 
+        id: "54", 
+        title: "Implementing Traits", 
+        description: "Applying behaviors to types.", 
+        componentId: "traits",
+        details: {
+          definition: "To implement a trait for a type, you provide the specific code for the methods defined in the trait definition.",
+          syntax: "impl Summary for Tweet {\n    fn summarize(&self) -> String {\n        format!(\"{}: {}\", self.username, self.content)\n    }\n}",
+          practical: "impl ToString for MyType {\n    fn to_string(&self) -> String { ... }\n}",
+          explanation: "You can implement a trait on a type only if either the trait or the type is local to your crate (the Orphan Rule)."
+        }
+      },
+      { 
+        id: "55", 
+        title: "Trait Parameters", 
+        description: "Functions accepting traits.", 
+        componentId: "traits",
+        details: {
+          definition: "You can use traits to define functions that accept many different types, as long as those types implement the required trait.",
+          syntax: "fn notify(item: &impl Summary) {\n    println!(\"Breaking news! {}\", item.summarize());\n}",
+          practical: "fn print_it(item: &impl Display) {\n    println!(\"{}\", item);\n}",
+          explanation: "This is syntactic sugar for 'trait bounds'. It allows for polymorphism where a single function can handle multiple concrete types."
+        }
+      },
+      { 
+        id: "56", 
+        title: "Default Methods", 
+        description: "Traits with basic logic.",
+        componentId: "traits",
+        details: {
+          definition: "Traits can provide default implementations for some or all of their methods. Types implementing the trait can override them or use the default.",
+          syntax: "trait Summary {\n    fn summarize(&self) -> String {\n        String::from(\"(Read more...)\")\n    }\n}",
+          practical: "impl Summary for NewsArticle {} // Uses default",
+          explanation: "Default methods allow you to extend traits without breaking existing implementations, as they don't require new code in the implementing types."
+        }
+      },
+      { 
+        id: "57", 
+        title: "Multiple Bounds", 
+        description: "The + syntax for traits.",
+        componentId: "traits",
+        details: {
+          definition: "You can specify that a generic type must implement multiple traits using the '+' syntax.",
+          syntax: "fn notify(item: &(impl Summary + Display)) { ... }",
+          practical: "fn clone_and_print<T: Clone + Display>(t: T) { ... }",
+          explanation: "This ensures that the type passed to the function has all the required capabilities, like being printable AND cloneable."
+        }
+      },
+      { 
+        id: "58", 
+        title: "Where Clauses", 
+        componentId: "traits",
+        description: "Cleaner generic constraints.",
+        details: {
+          definition: "When trait bounds become too long, you can move them to a 'where' clause after the function signature for better readability.",
+          syntax: "fn some_function<T, U>(t: &T, u: &U) -> i32\n    where T: Display + Clone,\n          U: Clone + Debug { ... }",
+          practical: "impl<T> Container<T> where T: Debug { ... }",
+          explanation: "Where clauses are semantically identical to inline bounds but make complex signatures much easier to parse visually."
+        }
+      },
+      { 
+        id: "59", 
+        componentId: "traits",
+        title: "Returning Traits", 
+        description: "The impl Trait syntax.",
+        details: {
+          definition: "You can use 'impl Trait' in the return position to return a value of some type that implements a trait, without specifying the concrete type.",
+          syntax: "fn returns_summarizable() -> impl Summary {\n    Tweet { ... }\n}",
+          practical: "fn make_adder(a: i32) -> impl Fn(i32) -> i32 { ... }",
+          explanation: "This is useful for closures and iterators where the concrete type is complex or unnameable. Note: you can only return one single concrete type."
+        }
+      },
+      { 
+        componentId: "traits",
+        id: "60", 
+        title: "Derive Magic", 
+        description: "Automatic trait implementations.",
+        details: {
+          definition: "The 'derive' attribute allows the compiler to automatically provide basic implementations for some common traits.",
+          syntax: "#[derive(Debug, Clone, PartialEq)]\nstruct User { ... }",
+          practical: "println!(\"{:?}\", user); // Works because of Debug",
+          explanation: "This generates the 'impl' block for you. It only works for specific standard library traits like Debug, Clone, Copy, PartialEq, etc."
+        }
+      }
     ]
   },
   {
@@ -662,16 +773,126 @@ export const learningPath: Phase[] = [
     title: "Phase 7: Chronos",
     color: "bg-violet-500",
     topics: [
-      { id: "61", title: "Lifetime Basics", description: "How long refs live.", componentId: "explicit-lifetimes" },
-      { id: "62", title: "Lifetime Annotation", description: "Naming scopes with 'a.", componentId: "explicit-lifetimes" },
-      { id: "63", title: "Struct Lifetimes", description: "Holding refs in data.", componentId: "explicit-lifetimes" },
-      { id: "64", title: "Lifetime Elision", description: "When the compiler infers." },
-      { id: "65", title: "Static Lifetimes", description: "Living for the whole program." },
-      { id: "66", title: "Trait Objects", description: "Dynamic dispatch with dyn.", componentId: "advanced-traits" },
-      { id: "67", title: "Boxed Traits", description: "Heap allocated dynamic traits." },
-      { id: "68", title: "Associated Types", description: "Types within traits.", componentId: "advanced-traits" },
-      { id: "69", title: "Default Generics", description: "Simplifying generic usage." },
-      { id: "70", title: "Operator Overload", description: "Custom math for types." }
+      { 
+        id: "61", 
+        title: "Lifetime Basics", 
+        description: "How long refs live.", 
+        componentId: "explicit-lifetimes",
+        details: {
+          definition: "A lifetime is the scope for which a reference is valid. Rust requires every reference to have a lifetime to ensure it doesn't outlive the data it points to.",
+          syntax: "// Implicit lifetimes usually work\nlet r;\n{ let x = 5; r = &x; } // Error",
+          practical: "fn longest<'a>(x: &'a str, y: &'a str) -> &'a str { ... }",
+          explanation: "Most of the time, lifetimes are inferred. When they aren't, you must annotate them to help the compiler understand the relationship between references."
+        }
+      },
+      { 
+        id: "62", 
+        title: "Lifetime Annotation", 
+        description: "Naming scopes with 'a.", 
+        componentId: "explicit-lifetimes",
+        details: {
+          definition: "Lifetime annotations don't change how long references live; they describe the relationships between the lifetimes of multiple references.",
+          syntax: "&'a i32\n&'a mut i32",
+          practical: "struct Ref<'a> { part: &'a str }",
+          explanation: "The syntax 'a is a generic lifetime parameter. It tells the compiler that the returned reference lives at least as long as the input references."
+        }
+      },
+      { 
+        id: "63", 
+        title: "Struct Lifetimes", 
+        description: "Holding refs in data.", 
+        componentId: "explicit-lifetimes",
+        details: {
+          definition: "If a struct holds a reference, you must specify a lifetime annotation for that reference to ensure the struct doesn't outlive the data it points to.",
+          syntax: "struct ImportantExcerpt<'a> {\n    part: &'a str,\n}",
+          practical: "let i = ImportantExcerpt { part: first_sentence };",
+          explanation: "This guarantees that an instance of 'ImportantExcerpt' cannot outlive the reference it holds in 'part'."
+        }
+      },
+      { 
+        id: "64", 
+        title: "Lifetime Elision", 
+        description: "When the compiler infers.",
+        componentId: "explicit-lifetimes",
+        details: {
+          definition: "Lifetime elision rules allow the compiler to infer lifetimes in common patterns, so you don't have to write them explicitly every time.",
+          syntax: "fn first_word(s: &str) -> &str { ... }",
+          practical: "// Equivalent to:\nfn first_word<'a>(s: &'a str) -> &'a str { ... }",
+          explanation: "There are three rules the compiler applies. If after applying them there are still ambiguous lifetimes, it will ask you to annotate them."
+        }
+      },
+      { 
+        id: "65", 
+        title: "Static Lifetimes", 
+        description: "Living for the whole program.",
+        componentId: "explicit-lifetimes",
+        details: {
+          definition: "'static is a special lifetime that lasts for the entire duration of the program. All string literals have the 'static lifetime.",
+          syntax: "let s: &'static str = \"I have a static lifetime.\";",
+          practical: "static HELLO: &str = \"Hello, world!\";",
+          explanation: "Use 'static carefully. It usually indicates a global constant or a memory leak. Most references should have a shorter, scoped lifetime."
+        }
+      },
+      { 
+        id: "66", 
+        title: "Trait Objects", 
+        description: "Dynamic dispatch with dyn.", 
+        componentId: "advanced-traits",
+        details: {
+          definition: "Trait objects allow for dynamic dispatch, meaning the specific method to call is determined at runtime. This allows for collections of different types.",
+          syntax: "pub struct Screen {\n    pub components: Vec<Box<dyn Draw>>,\n}",
+          practical: "let components: Vec<Box<dyn Draw>> = vec![Box::new(Button{}), Box::new(SelectBox{})];",
+          explanation: "Using 'dyn Trait' erases the concrete type information. It incurs a small runtime performance cost but provides great flexibility."
+        }
+      },
+      { 
+        id: "67", 
+        title: "Boxed Traits", 
+        componentId: "advanced-traits",
+        description: "Heap allocated dynamic traits.",
+        details: {
+          definition: "Since trait objects have an unknown size at compile time, they must be put behind a pointer, typically a Box.",
+          syntax: "let b: Box<dyn Animal> = Box::new(Dog {});",
+          practical: "fn returns_animal() -> Box<dyn Animal> { ... }",
+          explanation: "The Box provides a fixed size (the size of a pointer) on the stack, while the dynamic data lives on the heap."
+        }
+      },
+      { 
+        id: "68", 
+        title: "Associated Types", 
+        description: "Types within traits.", 
+        componentId: "advanced-traits",
+        details: {
+          definition: "Associated types connect a type placeholder with a trait such that the trait method definitions can use these placeholder types in their signatures.",
+          syntax: "trait Iterator {\n    type Item;\n    fn next(&mut self) -> Option<Self::Item>;\n}",
+          practical: "impl Iterator for Counter {\n    type Item = u32;\n    ... \n}",
+          explanation: "This is different from generics because you can only implement the trait once for a given type, fixing the associated type."
+        }
+      },
+      { 
+        id: "69", 
+        componentId: "advanced-traits",
+        title: "Default Generics", 
+        description: "Simplifying generic usage.",
+        details: {
+          definition: "You can specify a default concrete type for a generic type parameter. This is often used for operator overloading.",
+          syntax: "trait Add<Rhs=Self> {\n    type Output;\n    fn add(self, rhs: Rhs) -> Self::Output;\n}",
+          practical: "impl Add for Point { ... } // Rhs defaults to Point",
+          explanation: "This allows you to extend a type without breaking existing code, as users don't need to specify the generic type if the default works."
+        }
+      },
+      { 
+        componentId: "advanced-traits",
+        id: "70", 
+        title: "Operator Overload", 
+        description: "Custom math for types.",
+        details: {
+          definition: "Rust allows you to implement standard operators (like +, *, -) for your own types by implementing the corresponding traits in `std::ops`.",
+          syntax: "use std::ops::Add;\nimpl Add for Point { ... }",
+          practical: "let p3 = p1 + p2;",
+          explanation: "This is syntactic sugar for method calls. 'a + b' becomes 'a.add(b)'. You can overload most operators, but not all."
+        }
+      }
     ]
   },
   {
@@ -679,16 +900,126 @@ export const learningPath: Phase[] = [
     title: "Phase 8: Functional",
     color: "bg-rose-500",
     topics: [
-      { id: "71", title: "Closure Intro", description: "Anonymous logic blocks." },
-      { id: "72", title: "Closure Capture", description: "Borrowing vs Moving environment.", componentId: "closures" },
-      { id: "73", title: "The Fn Traits", description: "Fn, FnMut, and FnOnce." },
-      { id: "74", title: "Iterator Trait", description: "The core of sequence logic.", componentId: "iterators" },
-      { id: "75", title: "Map & Filter", description: "Transforming and selecting.", componentId: "iterators" },
-      { id: "76", title: "Fold & Reduce", description: "Condensing sequences." },
-      { id: "77", title: "IntoIterator", description: "Converting to sequences." },
-      { id: "78", title: "Zero-Cost Iters", description: "Performance of abstraction." },
-      { id: "79", title: "Custom Iterators", description: "Defining your own sequence." },
-      { id: "80", title: "Iters vs Loops", description: "When to use which." }
+      { 
+        id: "71", 
+        title: "Closure Intro", 
+        description: "Anonymous logic blocks.",
+        componentId: "closures",
+        details: {
+          definition: "Closures are anonymous functions you can save in a variable or pass as arguments to other functions. They can capture values from the scope in which they are defined.",
+          syntax: "let plus_one = |x| x + 1;",
+          practical: "let expensive_closure = |num| {\n    println!(\"calculating...\");\n    thread::sleep(Duration::from_secs(2));\n    num\n};",
+          explanation: "Unlike functions, closures don't require you to annotate the types of the parameters or the return value, as they are inferred."
+        }
+      },
+      { 
+        id: "72", 
+        title: "Closure Capture", 
+        description: "Borrowing vs Moving environment.", 
+        componentId: "closures",
+        details: {
+          definition: "Closures can capture their environment in three ways: borrowing immutably, borrowing mutably, or taking ownership (moving).",
+          syntax: "let equal_to_x = move |z| z == x;",
+          practical: "let x = vec![1, 2, 3];\nlet equal_to_x = move |z| z == x;\n// println!(\"{:?}\", x); // Error: x moved",
+          explanation: "The 'move' keyword forces the closure to take ownership of the values it uses, which is essential when passing closures to new threads."
+        }
+      },
+      { 
+        id: "73", 
+        title: "The Fn Traits", 
+        description: "Fn, FnMut, and FnOnce.",
+        componentId: "closures",
+        details: {
+          definition: "Closures implement one or more of the Fn traits: Fn (borrows), FnMut (mutably borrows), or FnOnce (takes ownership).",
+          syntax: "fn call_with_one<F>(some_closure: F) -> i32\n    where F: Fn(i32) -> i32 { ... }",
+          practical: "let mut x = 0;\nlet mut add = || x += 1; // Implements FnMut",
+          explanation: "The compiler automatically implements these traits based on how the closure uses the captured values."
+        }
+      },
+      { 
+        id: "74", 
+        title: "Iterator Trait", 
+        description: "The core of sequence logic.", 
+        componentId: "iterators",
+        details: {
+          definition: "The Iterator trait allows you to iterate over a sequence of elements. It requires implementing just one method: 'next'.",
+          syntax: "pub trait Iterator {\n    type Item;\n    fn next(&mut self) -> Option<Self::Item>;\n}",
+          practical: "let v1 = vec![1, 2, 3];\nlet v1_iter = v1.iter();",
+          explanation: "Iterators are lazy: they have no effect until you call methods that consume the iterator to use up the sequence."
+        }
+      },
+      { 
+        id: "75", 
+        title: "Map & Filter", 
+        description: "Transforming and selecting.", 
+        componentId: "iterators",
+        details: {
+          definition: "'map' transforms each item in an iterator, and 'filter' creates an iterator of elements that match a predicate.",
+          syntax: "v.iter().map(|x| x + 1)",
+          practical: "let v: Vec<i32> = vec![1, 2, 3].into_iter()\n    .map(|x| x + 1)\n    .filter(|x| x > 2)\n    .collect();",
+          explanation: "These are 'iterator adaptors'. They don't consume the iterator; they produce a new one with modified behavior."
+        }
+      },
+      { 
+        id: "76", 
+        title: "Fold & Reduce", 
+        componentId: "iterators",
+        description: "Condensing sequences.",
+        details: {
+          definition: "'fold' reduces an iterator to a single value by applying a function to an accumulator and each element.",
+          syntax: "iter.fold(initial, |acc, x| acc + x)",
+          practical: "let sum = vec![1, 2, 3].iter().fold(0, |acc, x| acc + x);",
+          explanation: "This is a powerful functional programming concept that can replace many complex loops with a single expression."
+        }
+      },
+      { 
+        id: "77", 
+        componentId: "iterators",
+        title: "IntoIterator", 
+        description: "Converting to sequences.",
+        details: {
+          definition: "The IntoIterator trait allows a type to be converted into an iterator. This is what makes the 'for' loop work.",
+          syntax: "impl IntoIterator for MyCollection { ... }",
+          practical: "for item in my_collection { ... } // Implicitly calls into_iter()",
+          explanation: "By implementing this trait, you define how your custom types can be iterated over, making them feel like native Rust collections."
+        }
+      },
+      { 
+        componentId: "iterators",
+        id: "78", 
+        title: "Zero-Cost Iters", 
+        description: "Performance of abstraction.",
+        details: {
+          definition: "Rust's iterators are 'zero-cost abstractions'. They compile down to the same (or better) machine code as a manual low-level loop.",
+          syntax: "// No special syntax, just standard usage",
+          practical: "// High-level functional chains compile to optimized assembly",
+          explanation: "You don't have to sacrifice performance for readability. The compiler unrolls loops and vectorizes operations automatically."
+        }
+      },
+      { 
+        id: "79", 
+        title: "Custom Iterators", 
+        description: "Defining your own sequence.",
+        componentId: "iterators",
+        details: {
+          definition: "You can create your own iterators by implementing the Iterator trait on a struct.",
+          syntax: "impl Iterator for Counter {\n    fn next(&mut self) -> Option<u32> { ... }\n}",
+          practical: "let counter = Counter::new();\nfor i in counter { println!(\"{}\", i); }",
+          explanation: "This gives you full control over the iteration logic, allowing for infinite sequences or complex traversal patterns."
+        }
+      },
+        
+      { 
+        id: "80", 
+        title: "Iters vs Loops", 
+        description: "When to use which.",
+        details: {
+          definition: "While loops are good for simple repetition, iterators are preferred for processing sequences of data due to safety and expressiveness.",
+          syntax: "// Loop vs Iterator",
+          practical: "// Iterator approach is often more concise and less error-prone",
+          explanation: "Iterators eliminate bounds checks (improving performance) and off-by-one errors (improving safety)."
+        }
+      }
     ]
   },
   {
@@ -696,16 +1027,126 @@ export const learningPath: Phase[] = [
     title: "Phase 9: Systems",
     color: "bg-blue-600",
     topics: [
-      { id: "81", title: "Boxed Memory", description: "Recursive heap types.", componentId: "smart-pointers" },
-      { id: "82", title: "Shared Rc<T>", description: "Reference counting.", componentId: "smart-pointers" },
-      { id: "83", title: "RefCell Mutability", description: "Interior mutability pattern.", componentId: "interior-mutability" },
-      { id: "84", title: "Thread Spawning", description: "Parallel execution basics.", componentId: "concurrency" },
-      { id: "85", title: "MPSC Channels", description: "Message passing between threads." },
-      { id: "86", title: "Shared Arc<T>", description: "Thread-safe shared refs.", componentId: "concurrency" },
-      { id: "87", title: "Mutex & Locks", description: "Synchronized access.", componentId: "concurrency" },
-      { id: "88", title: "Send & Sync", description: "Concurrency marker traits." },
-      { id: "89", title: "Atomics", description: "Lock-free low level sync." },
-      { id: "90", title: "Fearless Concurrency", description: "The Rust guarantee." }
+      { 
+        id: "81", 
+        title: "Boxed Memory", 
+        description: "Recursive heap types.", 
+        componentId: "smart-pointers",
+        details: {
+          definition: "Box<T> is the simplest smart pointer. It allows you to store data on the heap rather than the stack, with a pointer on the stack.",
+          syntax: "let b = Box::new(5);",
+          practical: "enum List {\n    Cons(i32, Box<List>),\n    Nil,\n}",
+          explanation: "Boxes are essential for recursive types (like linked lists) where the size must be known at compile time."
+        }
+      },
+      { 
+        id: "82", 
+        title: "Shared Rc<T>", 
+        description: "Reference counting.", 
+        componentId: "smart-pointers",
+        details: {
+          definition: "Rc<T> enables multiple ownership. It keeps track of the number of references to a value and drops it only when the count reaches zero.",
+          syntax: "let a = Rc::new(5);\nlet b = Rc::clone(&a);",
+          practical: "let list = Rc::new(Cons(1, Rc::new(Nil)));",
+          explanation: "Rc is for single-threaded scenarios. It allows data to have multiple owners, which is useful in graph structures."
+        }
+      },
+      { 
+        id: "83", 
+        title: "RefCell Mutability", 
+        description: "Interior mutability pattern.", 
+        componentId: "interior-mutability",
+        details: {
+          definition: "RefCell<T> enforces borrowing rules at runtime instead of compile time. It allows you to mutate data even when there are immutable references to it.",
+          syntax: "let x = RefCell::new(5);\n*x.borrow_mut() += 1;",
+          practical: "struct MockMessenger {\n    sent_messages: RefCell<Vec<String>>,\n}",
+          explanation: "This is called 'interior mutability'. It's useful when you need to mutate data inside an immutable structure, like in mock objects."
+        }
+      },
+      { 
+        id: "84", 
+        title: "Thread Spawning", 
+        description: "Parallel execution basics.", 
+        componentId: "concurrency",
+        details: {
+          definition: "Rust allows you to spawn native OS threads to run code in parallel. The 'move' closure is often used to transfer ownership of data to the new thread.",
+          syntax: "thread::spawn(|| {\n    // code to run in new thread\n});",
+          practical: "let handle = thread::spawn(|| {\n    for i in 1..10 { println!(\"{}\", i); }\n});\nhandle.join().unwrap();",
+          explanation: "Rust's ownership model guarantees thread safety by preventing data races at compile time."
+        }
+      },
+      { 
+        id: "85", 
+        title: "MPSC Channels", 
+        description: "Message passing between threads.",
+        componentId: "concurrency",
+        details: {
+          definition: "Channels allow threads to communicate by sending messages. MPSC stands for 'Multiple Producer, Single Consumer'.",
+          syntax: "let (tx, rx) = mpsc::channel();",
+          practical: "tx.send(val).unwrap();\nlet received = rx.recv().unwrap();",
+          explanation: "This follows the Go philosophy: 'Do not communicate by sharing memory; instead, share memory by communicating.'"
+        }
+      },
+      { 
+        id: "86", 
+        title: "Shared Arc<T>", 
+        description: "Thread-safe shared refs.", 
+        componentId: "concurrency",
+        details: {
+          definition: "Arc<T> is an Atomic Reference Counted smart pointer. It is safe to share across threads, unlike Rc<T>.",
+          syntax: "let counter = Arc::new(Mutex::new(0));",
+          practical: "let c = Arc::clone(&counter);\nthread::spawn(move || { ... });",
+          explanation: "Arc has a performance penalty over Rc due to atomic operations, so use it only when multithreading is required."
+        }
+      },
+      { 
+        id: "87", 
+        title: "Mutex & Locks", 
+        description: "Synchronized access.", 
+        componentId: "concurrency",
+        details: {
+          definition: "Mutex (Mutual Exclusion) allows only one thread to access data at a time. You must acquire a lock before accessing the data.",
+          syntax: "let m = Mutex::new(5);\nlet mut num = m.lock().unwrap();",
+          practical: "*num = 6;",
+          explanation: "Rust's type system ensures you can't access the data without holding the lock, preventing race conditions."
+        }
+      },
+      { 
+        id: "88", 
+        title: "Send & Sync", 
+        description: "Concurrency marker traits.",
+        componentId: "concurrency",
+        details: {
+          definition: "Send indicates that ownership of a type can be transferred between threads. Sync indicates that a type is safe to reference from multiple threads.",
+          syntax: "// Marker traits, usually auto-implemented",
+          practical: "struct MyBox<T>(T);\nunsafe impl<T: Send> Send for MyBox<T> {}",
+          explanation: "These traits are the foundation of Rust's fearless concurrency. Most types are Send and Sync automatically."
+        }
+      },
+      { 
+        id: "89", 
+        title: "Atomics", 
+        componentId: "concurrency",
+        description: "Lock-free low level sync.",
+        details: {
+          definition: "Atomic types provide primitive shared memory synchronization without locks, using hardware instructions.",
+          syntax: "let count = AtomicUsize::new(0);",
+          practical: "count.fetch_add(1, Ordering::SeqCst);",
+          explanation: "Atomics are faster than Mutexes but harder to use correctly. They are the building blocks for other concurrency primitives."
+        }
+      },
+      { 
+        id: "90", 
+        componentId: "concurrency",
+        title: "Fearless Concurrency", 
+        description: "The Rust guarantee.",
+        details: {
+          definition: "Fearless concurrency means you can write multi-threaded code without fear of subtle bugs like data races.",
+          syntax: "// No specific syntax",
+          practical: "// The compiler catches concurrency bugs at compile time",
+          explanation: "By leveraging ownership and type checking, Rust turns runtime concurrency bugs into compile-time errors."
+        }
+      }
     ]
   },
     {

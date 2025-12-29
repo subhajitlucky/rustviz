@@ -42,11 +42,14 @@ export function Navbar() {
                         Learning Path
                     </button>
                     <button
-                        onClick={() => window.open('https://play.rust-lang.org/', '_blank')}
-                        className="flex items-center gap-2 transition-colors text-muted-foreground hover:text-primary"
+                        onClick={() => setView('playground')}
+                        className={cn(
+                            "flex items-center gap-2 transition-colors hover:text-primary",
+                            view === 'playground' ? "text-foreground" : "text-muted-foreground"
+                        )}
                     >
                         <BookOpen className="h-4 w-4" />
-                        Playground ↗
+                        Playground
                     </button>
                     <button
                         onClick={toggleTheme}

@@ -2,11 +2,11 @@ import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 
 interface AppState {
-    view: 'home' | 'roadmap' | 'module'
+    view: 'home' | 'roadmap' | 'module' | 'playground'
     currentStep: number
     completedModules: string[]
     theme: 'light' | 'dark'
-    setView: (view: 'home' | 'roadmap' | 'module') => void
+    setView: (view: 'home' | 'roadmap' | 'module' | 'playground') => void
     setCurrentStep: (step: number) => void
     completeModule: (id: string) => void
     toggleTheme: () => void
