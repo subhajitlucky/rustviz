@@ -11,7 +11,6 @@ const MemoryModel = lazy(() => import("@/modules/step-02-memory/MemoryModel"))
 const OwnershipRules = lazy(() => import("@/modules/step-03-ownership/OwnershipRules"))
 const Borrowing = lazy(() => import("@/modules/step-04-borrowing/Borrowing"))
 const Lifetimes = lazy(() => import("@/modules/step-05-lifetimes/Lifetimes"))
-const StructsEnums = lazy(() => import("@/modules/step-06-structs/StructsEnums"))
 const ErrorHandling = lazy(() => import("@/modules/step-07-error-handling/ErrorHandling"))
 const Concurrency = lazy(() => import("@/modules/step-08-concurrency/Concurrency"))
 
@@ -61,6 +60,10 @@ const MemoryLayoutVis = lazy(() => import("@/modules/phase-4-systems/MemoryLayou
 const AdvancedTraitsVis = lazy(() => import("@/modules/phase-4-systems/AdvancedTraitsVis").then(m => ({ default: m.AdvancedTraitsVis })))
 const MacrosVis = lazy(() => import("@/modules/phase-4-systems/MacrosVis").then(m => ({ default: m.MacrosVis })))
 
+// Phase 4 Data Modules
+const StructsVis = lazy(() => import("@/modules/phase-4-data/StructsVis"))
+const EnumsVis = lazy(() => import("@/modules/phase-4-data/EnumsVis"))
+
 // Graduation Modules
 const CompilerLogic = lazy(() => import("@/modules/step-09-compiler/CompilerLogic"))
 const ProblemSolving = lazy(() => import("@/modules/step-10-problems/ProblemSolving"))
@@ -81,7 +84,6 @@ const COMPONENT_MAP: Record<string, React.ComponentType> = {
   "ownership": OwnershipRules,
   "borrowing": Borrowing,
   "lifetimes": Lifetimes,
-  "structs-enums": StructsEnums,
   "error-handling": ErrorHandling,
   "concurrency": Concurrency,
   "syntax-basics": SyntaxBasics,
@@ -120,6 +122,8 @@ const COMPONENT_MAP: Record<string, React.ComponentType> = {
   "memory-layout": MemoryLayoutVis,
   "advanced-traits": AdvancedTraitsVis,
   "macros": MacrosVis,
+  "structs": StructsVis,
+  "enums": EnumsVis,
   "compiler-logic": CompilerLogic,
   "problem-solving": ProblemSolving,
   "congrats": Congrats,

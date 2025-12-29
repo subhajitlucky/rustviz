@@ -433,7 +433,7 @@ export const learningPath: Phase[] = [
         id: "33", 
         title: "Classic Structs", 
         description: "Named field data structures.", 
-        componentId: "structs-enums",
+        componentId: "structs",
         details: {
           definition: "Structs (structures) allow you to group related data into a single named type with named fields, similar to objects in other languages.",
           syntax: "struct User {\n    name: String,\n    age: u8,\n}",
@@ -445,7 +445,7 @@ export const learningPath: Phase[] = [
         id: "34", 
         title: "Tuple Structs", 
         description: "Unnamed field data structures.",
-        componentId: "structs-enums",
+        componentId: "structs",
         details: {
           definition: "Tuple structs look like tuples but have a name. They are useful for creating distinct types when field names would be redundant.",
           syntax: "struct Color(i32, i32, i32);\nlet black = Color(0, 0, 0);",
@@ -457,6 +457,7 @@ export const learningPath: Phase[] = [
         id: "35", 
         title: "Unit-Like Structs", 
         description: "Zero-sized types for traits.",
+        componentId: "structs",
         details: {
           definition: "Unit-like structs have no fields at all. They are used when you need to implement a trait on a type but don't need to store any data within the type itself.",
           syntax: "struct AlwaysEqual;\nimpl PartialEq for AlwaysEqual { ... }",
@@ -468,7 +469,7 @@ export const learningPath: Phase[] = [
         id: "36", 
         title: "Implementing Methods", 
         description: "The impl block magic.", 
-        componentId: "structs-enums",
+        componentId: "structs",
         details: {
           definition: "Methods are functions defined within the context of a struct (or enum/trait). They are grouped inside 'impl' blocks.",
           syntax: "impl Rectangle {\n    fn area(&self) -> u32 { self.width * self.height }\n}",
@@ -480,6 +481,7 @@ export const learningPath: Phase[] = [
         id: "37", 
         title: "Self Referencing", 
         description: "Understanding &self and &mut self.",
+        componentId: "structs",
         details: {
           definition: "When defining methods, you choose how to access the instance: '&self' for immutable access, '&mut self' for mutable access, or 'self' to take ownership.",
           syntax: "fn update(&mut self, val: u32) { self.val = val; }",
@@ -491,7 +493,7 @@ export const learningPath: Phase[] = [
         id: "38", 
         title: "Enum Variants", 
         description: "One of many possibilities.", 
-        componentId: "structs-enums",
+        componentId: "enums",
         details: {
           definition: "Enums (enumerations) allow you to define a type by enumerating its possible variants. A variable of an enum type can be exactly one of its variants.",
           syntax: "enum IpAddrKind {\n    V4, V6,\n}",
@@ -503,7 +505,7 @@ export const learningPath: Phase[] = [
         id: "39", 
         title: "Enums with Data", 
         description: "Wrapping data in variants.", 
-        componentId: "structs-enums",
+        componentId: "enums",
         details: {
           definition: "In Rust, enum variants can store data directly. This allows you to group different types of related data under a single type name.",
           syntax: "enum Message {\n    Quit,\n    Write(String),\n    Move { x: i32, y: i32 },\n}",
