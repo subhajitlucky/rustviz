@@ -20,7 +20,7 @@ export interface Phase {
 
 export const learningPath: Phase[] = [
   {
-    id: "p1",
+    id: "phase-1",
     title: "Phase 1: First Breath",
     color: "bg-slate-500",
     topics: [
@@ -147,7 +147,7 @@ export const learningPath: Phase[] = [
     ]
   },
   {
-    id: "p2",
+    id: "phase-2",
     title: "Phase 2: Logic Flow",
     color: "bg-cyan-500",
     topics: [
@@ -274,7 +274,7 @@ export const learningPath: Phase[] = [
     ]
   },
   {
-    id: "p3",
+    id: "phase-3",
     title: "Phase 3: Ownership",
     color: "bg-emerald-500",
     topics: [
@@ -401,7 +401,7 @@ export const learningPath: Phase[] = [
     ]
   },
   {
-    id: "p4",
+    id: "phase-4",
     title: "Phase 4: Data Architecture",
     color: "bg-orange-500",
     topics: [
@@ -528,7 +528,7 @@ export const learningPath: Phase[] = [
     ]
   },
   {
-    id: "p5",
+    id: "phase-5",
     title: "Phase 5: Safety Net",
     color: "bg-amber-500",
     topics: [
@@ -654,7 +654,7 @@ export const learningPath: Phase[] = [
     ]
   },
   {
-    id: "p6",
+    id: "phase-6",
     title: "Phase 6: Abstraction",
     color: "bg-indigo-500",
     topics: [
@@ -781,7 +781,7 @@ export const learningPath: Phase[] = [
     ]
   },
   {
-    id: "p7",
+    id: "phase-7",
     title: "Phase 7: Chronos",
     color: "bg-violet-500",
     topics: [
@@ -908,7 +908,7 @@ export const learningPath: Phase[] = [
     ]
   },
   {
-    id: "p8",
+    id: "phase-8",
     title: "Phase 8: Functional",
     color: "bg-rose-500",
     topics: [
@@ -1035,7 +1035,7 @@ export const learningPath: Phase[] = [
     ]
   },
   {
-    id: "p9",
+    id: "phase-9",
     title: "Phase 9: Systems",
     color: "bg-blue-600",
     topics: [
@@ -1162,7 +1162,7 @@ export const learningPath: Phase[] = [
     ]
   },
     {
-      id: "p10",
+    id: "phase-10",
       title: "Phase 10: Graduation",
       color: "bg-purple-600",
       topics: [

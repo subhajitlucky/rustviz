@@ -35,10 +35,10 @@ export function Navbar() {
                         Home
                     </Link>
                     <Link
-                        to="/roadmap"
+                        to="/learn"
                         className={cn(
                             "flex items-center gap-2 transition-colors hover:text-primary",
-                            location.pathname === '/roadmap' ? "text-foreground" : "text-muted-foreground"
+                            location.pathname === '/learn' ? "text-foreground" : "text-muted-foreground"
                         )}
                     >
                         <Layers className="h-4 w-4" />

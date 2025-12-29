@@ -40,7 +40,7 @@ export function Roadmap() {
                                             ? "border-primary bg-primary/5 shadow-md shadow-primary/10 ring-1 ring-primary/20" 
                                             : "hover:border-primary/50 bg-card"
                                     )}
-                                    onClick={() => navigate(`/learn/${globalIndex}`)}
+                                    onClick={() => navigate(`/learn/${phase.id}/${topic.id}`)}
                                 >
                                     {isActive && <div className={cn("absolute top-0 left-0 w-1 h-full", phase.color)} />}
                                     
