@@ -215,6 +215,7 @@ export const learningPath: Phase[] = [
         id: "16", 
         title: "While Conditionals", 
         description: "Looping until false.",
+        componentId: "control-flow",
         details: {
           definition: "A 'while' loop executes a block of code as long as a boolean condition remains true.",
           syntax: "while number != 0 {\n    number -= 1;\n}",
@@ -226,6 +227,7 @@ export const learningPath: Phase[] = [
         id: "17", 
         title: "For Range Iteration", 
         description: "Safe sequence traversal.",
+        componentId: "control-flow",
         details: {
           definition: "The 'for' loop in Rust is used to iterate over a collection or a range of numbers. It is safer and more idiomatic than C-style for loops.",
           syntax: "for i in 1..4 {\n    println!(\"{}\", i);\n}",
@@ -249,6 +251,7 @@ export const learningPath: Phase[] = [
         id: "19", 
         title: "Destructuring Patterns", 
         description: "Unpacking data in match.",
+        componentId: "control-flow",
         details: {
           definition: "Pattern matching can be used to 'destructure' or pull apart complex data types like tuples, enums, and structs to access their internal values.",
           syntax: "let (x, y) = (1, 2);\nmatch point {\n    Point { x, y: 0 } => println!(\"On x axis\"),\n}",
